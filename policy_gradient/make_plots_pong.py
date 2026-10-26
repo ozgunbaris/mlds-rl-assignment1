@@ -30,6 +30,8 @@ def main():
     p.add_argument("--diag-runs", type=int, default=None, help="only the first N runs appear in the entropy/advantage plots")
     p.add_argument("--group", action="append", default=[], metavar="LABEL=GLOB",
                    help="seed group, e.g. 'no baseline=results/pong/cluster_none_seed*'; drawn as mean +- std over seeds")
+    p.add_argument("--group-name", default="seed_groups", help="stem of the group figure/json (compare_<name>.png, <name>.json)")
+    p.add_argument("--group-title", default="mean +- 1 std over seeds")
     args = p.parse_args()
     os.makedirs(args.out, exist_ok=True)
     labels = args.labels or [os.path.basename(r.rstrip("/")) for r in args.runs]
@@ -119,11 +121,11 @@ def main():
                                "final_ma100_mean": float(np.mean(finals)), "final_ma100_std": float(np.std(finals)),
                                "best_ma100_per_seed": bests, "eval": ev}
         if gcurves:
-            viz.compare_curves(gcurves, os.path.join(args.out, "compare_seed_groups.png"),
-                               f"Pong-v5: {args.window}-episode moving-average reward, mean +- 1 std over seeds", window=args.window)
-            with open(os.path.join(args.out, "seed_groups.json"), "w") as f:
+            viz.compare_curves(gcurves, os.path.join(args.out, f"compare_{args.group_name}.png"),
+                               f"Pong-v5: {args.window}-episode moving-average reward, {args.group_title}", window=args.window)
+            with open(os.path.join(args.out, f"{args.group_name}.json"), "w") as f:
                 json.dump(gsummary, f, indent=2)
-            summary["seed_groups"] = gsummary
+            summary[args.group_name] = gsummary
     with open(os.path.join(args.out, "summary.json"), "w") as f:
         json.dump(summary, f, indent=2)
     print(json.dumps(summary, indent=2))
