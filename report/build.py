@@ -22,6 +22,9 @@ for i, s in enumerate(stems, start=1):
 unresolved = [k for k in re.findall(r"FIG\(([^)]+)\)", text) if k not in numbers]
 if unresolved:
     sys.exit(f"unresolved figure keys: {sorted(set(unresolved))}")
+left = re.findall(r"\u00ab[^\u00bb]*\u00bb", text)
+if left:
+    sys.exit(f"unfilled markers: {left[:10]}")
 out = re.sub(r"FIG\(([^)]+)\)", lambda m: str(numbers[m.group(1)]), text)
 build_md = os.path.join(here, "report_build.md")
 open(build_md, "w").write(out)

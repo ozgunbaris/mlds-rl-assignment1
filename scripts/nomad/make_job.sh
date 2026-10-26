@@ -9,10 +9,15 @@ HOURS=${HOURS:-4.0}
 BASELINES=${BASELINES:-"none value"}
 CORES=${CORES:-24}
 MEMORY=${MEMORY:-32768}
+JOB_NAME=${JOB_NAME:-pong-reinforce}
+NODE=${NODE:-mlds-deepdish5}
+LR=${LR:-1e-3}
+PREFIX=${PREFIX:-cluster}
+OUTFILE=scripts/nomad/$JOB_NAME.nomad
 tar -czf /tmp/pong_code.tar.gz policy_gradient/*.py shuttle_mdp/*.py tests/*.py viz.py requirements.txt
 B64=$(base64 < /tmp/pong_code.tar.gz)
-cat > scripts/nomad/pong-reinforce.nomad <<EOF
-job "pong-reinforce" {
+cat > $OUTFILE <<EOF
+job "$JOB_NAME" {
   datacenters = ["dc1"]
   type        = "batch"
 
@@ -20,11 +25,13 @@ job "pong-reinforce" {
     revision = "$REV"
     hours    = "$HOURS"
     baselines = "$BASELINES"
+    lr        = "$LR"
+    prefix    = "$PREFIX"
   }
 
   constraint {
     attribute = "\${attr.unique.hostname}"
-    value     = "mlds-deepdish5"
+    value     = "$NODE"
   }
 
   group "main" {
@@ -63,6 +70,8 @@ job "pong-reinforce" {
         PYTHONUNBUFFERED     = "1"
         HOURS                = "$HOURS"
         BASELINES            = "$BASELINES"
+        LR                   = "$LR"
+        PREFIX               = "$PREFIX"
       }
 
       template {
@@ -87,4 +96,4 @@ PAYLOAD_EOF
   }
 }
 EOF
-echo "wrote scripts/nomad/pong-reinforce.nomad (revision $REV, hours $HOURS, baselines '$BASELINES', cores $CORES, memory $MEMORY MB)"
+echo "wrote $OUTFILE (job $JOB_NAME on $NODE, revision $REV, hours $HOURS, baselines '$BASELINES', lr $LR, prefix $PREFIX, cores $CORES, memory $MEMORY MB)"
