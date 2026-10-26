@@ -41,17 +41,17 @@ Assumptions beyond the statement: (1) the cap of 200 is enforced by clipping, so
 
 ## (a) Enumeration with T = 500
 
-Enumeration means exhaustive backward induction: for $t = 499, \dots, 0$ and every state the two action values $c(s,a) + \gamma \sum_{s'} P_a(s,s') V_{t+1}(s')$ are enumerated and the minimum is stored. The value function at time 0 is in Figure 1. $V_0$ is convex-looking and increasing, from $V_0(0) = 576.67$ to $V_0(200) = 3821.59$, and is flat between $s = 13$ and $s = 15$ ($V_0 = 676.67$ there) because every one of those states dispatches, empties the station and pays the same 100.
+Enumeration means exhaustive backward induction: for $t = 499, \dots, 0$ and every state the two action values $c(s,a) + \gamma \sum_{s'} P_a(s,s') V_{t+1}(s')$ are enumerated and the minimum is stored. The value function at time 0 is in Figure FIG(fig_a_enumeration_value_T500). $V_0$ is convex-looking and increasing, from $V_0(0) = 576.67$ to $V_0(200) = 3821.59$, and is flat between $s = 13$ and $s = 15$ ($V_0 = 676.67$ there) because every one of those states dispatches, empties the station and pays the same 100.
 
 ![(a) Optimal value function at time 0 from enumeration over 500 periods.](../results/shuttle/fig_a_enumeration_value_T500.png){ width=78% }
 
-Figure 2 shows the same backward induction at several stages. The curve at $t = 499$ is the one-period cost $2s$, the curve at $t = 495$ still bends only slightly, and the curves for $t \le 400$ are indistinguishable from $t = 0$: with $\gamma = 0.95$ the influence of the horizon decays as $0.95^{500 - t}$.
+Figure FIG(fig_a_enumeration_stages) shows the same backward induction at several stages. The curve at $t = 499$ is the one-period cost $2s$, the curve at $t = 495$ still bends only slightly, and the curves for $t \le 400$ are indistinguishable from $t = 0$: with $\gamma = 0.95$ the influence of the horizon decays as $0.95^{500 - t}$.
 
 ![(a) Value function at stages t = 0, 400, 480, 495 and 499 of the 500-period problem.](../results/shuttle/fig_a_enumeration_stages.png){ width=78% }
 
 ## (b) Value iteration
 
-Value iteration applies $V \leftarrow \min_a [c_a + \gamma P_a V]$ from $V = 0$ until the sup-norm change is below $10^{-10}$. It stopped after 519 sweeps with a final change of $9.9 \times 10^{-11}$, which bounds the distance to $V^*$ by $\gamma/(1-\gamma)$ times that change, $1.9 \times 10^{-9}$. Figure 3 shows $V^*$ and Figure 4 the geometric convergence (slope $\log 0.95$ per sweep).
+Value iteration applies $V \leftarrow \min_a [c_a + \gamma P_a V]$ from $V = 0$ until the sup-norm change is below $10^{-10}$. It stopped after 519 sweeps with a final change of $9.9 \times 10^{-11}$, which bounds the distance to $V^*$ by $\gamma/(1-\gamma)$ times that change, $1.9 \times 10^{-9}$. Figure FIG(fig_b_value_iteration_value) shows $V^*$ and Figure FIG(fig_b_vi_convergence) the geometric convergence (slope $\log 0.95$ per sweep).
 
 ![(b) Optimal value function from value iteration.](../results/shuttle/fig_b_value_iteration_value.png){ width=78% }
 
@@ -59,17 +59,17 @@ Value iteration applies $V \leftarrow \min_a [c_a + \gamma P_a V]$ from $V = 0$ 
 
 ## (c) Policy iteration
 
-Policy iteration starts from "never dispatch", evaluates each policy exactly by solving $(I - \gamma P_\pi) V = c_\pi$, and improves greedily, changing an action only when it is strictly better. It converged in 6 iterations; the dispatch threshold of the successive policies was 201 (never), 3, 26, 7, 14, 13, 13. The optimal policy (Figure 5) is a threshold rule: **dispatch if and only if $s \ge 13$**. Figure 6 plots $Q(s, \text{dispatch}) - Q(s, \text{wait})$, which crosses zero between $s = 12$ and $s = 13$.
+Policy iteration starts from "never dispatch", evaluates each policy exactly by solving $(I - \gamma P_\pi) V = c_\pi$, and improves greedily, changing an action only when it is strictly better. It converged in 6 iterations; the dispatch threshold of the successive policies was 201 (never), 3, 26, 7, 14, 13, 13. The optimal policy (Figure FIG(fig_c_policy_iteration_policy)) is a threshold rule: **dispatch if and only if $s \ge 13$**. Figure FIG(fig_c_q_gap) plots $Q(s, \text{dispatch}) - Q(s, \text{wait})$, which crosses zero between $s = 12$ and $s = 13$.
 
 ![(c) Optimal policy from policy iteration.](../results/shuttle/fig_c_policy_iteration_policy.png){ width=78% }
 
 ![(c) Action-value gap under the optimal value function; negative means dispatching is cheaper.](../results/shuttle/fig_c_q_gap.png){ width=70% }
 
-The threshold is below the capacity: with 13 or 14 customers the shuttle leaves with empty seats. Waiting one more period with 13 customers costs $2 \times 13 = 26$ in holding cost plus the extra cost of a longer queue later, while delaying the dispatch only saves $(1-\gamma) c_f = 5$ in discounting; the exact comparison is the curve in Figure 6.
+The threshold is below the capacity: with 13 or 14 customers the shuttle leaves with empty seats. Waiting one more period with 13 customers costs $2 \times 13 = 26$ in holding cost plus the extra cost of a longer queue later, while delaying the dispatch only saves $(1-\gamma) c_f = 5$ in discounting; the exact comparison is the curve in Figure FIG(fig_c_q_gap).
 
 ## Agreement between the three methods
 
-The three value functions coincide: $\max_s |V_0^{T=500}(s) - V_{VI}(s)| = 3.1 \times 10^{-9}$ and $\max_s |V_{VI}(s) - V_{PI}(s)| = 1.9 \times 10^{-9}$ (Figure 7), and the three policies are identical in every state. The stage policies of the enumeration equal the stationary policy for every $t \le 480$; only the last few stages differ (at $t = 495$ and $t = 499$ the remaining horizon is too short to recover the 100 dispatch cost, so those stages dispatch later or never). That end effect is expected and does not reach $t = 0$.
+The three value functions coincide: $\max_s |V_0^{T=500}(s) - V_{VI}(s)| = 3.1 \times 10^{-9}$ and $\max_s |V_{VI}(s) - V_{PI}(s)| = 1.9 \times 10^{-9}$ (Figure FIG(fig_value_comparison)), and the three policies are identical in every state. The stage policies of the enumeration equal the stationary policy for every $t \le 480$; only the last few stages differ (at $t = 495$ and $t = 499$ the remaining horizon is too short to recover the 100 dispatch cost, so those stages dispatch later or never). That end effect is expected and does not reach $t = 0$.
 
 ![Value functions of the three methods drawn on top of each other.](../results/shuttle/fig_value_comparison.png){ width=70% }
 
@@ -79,18 +79,18 @@ The three value functions coincide: $\max_s |V_0^{T=500}(s) - V_{VI}(s)| = 3.1 \
 - **Fewer customers than seats ($s < K$).** $\max(s - K, 0)$ keeps the holding cost at zero and the next state at $A_t$. The solver finds that dispatching with 13 or 14 customers is optimal, so this branch is exercised by the optimal policy itself.
 - **The cap at 200.** Rows of $P$ still sum to one (all 402 rows checked); from $s = 199$ and $s = 200$ with "wait" the whole arrival mass lands on 200. Raising the cap to 400 changes $V$ by at most $4.6 \times 10^{-13}$ on $s \le 200$ and leaves the policy unchanged, so the cap does not distort the answer: under the optimal policy the queue never climbs toward 200.
 - **Ties in policy improvement.** The improvement step keeps the current action unless the alternative is strictly better by more than $10^{-9}$; this removes cycling between equal-valued actions.
-- **Horizon effects.** The finite-horizon problem with $V_T = 0$ makes the last stages myopic (Figure 2). A tolerance of $10^{-10}$ in value iteration and $T = 500$ in enumeration were chosen so that these effects are below $10^{-8}$ at $t = 0$.
+- **Horizon effects.** The finite-horizon problem with $V_T = 0$ makes the last stages myopic (Figure FIG(fig_a_enumeration_stages)). A tolerance of $10^{-10}$ in value iteration and $T = 500$ in enumeration were chosen so that these effects are below $10^{-8}$ at $t = 0$.
 - **Monotone structure.** $V^*$ is nondecreasing in $s$ (every increment is between 0 and 24.85) and the policy is monotone (once dispatching is optimal it stays optimal for larger $s$); both are checked in the tests because a bug in the transition model typically breaks them first.
 
 ## Tests that validate correctness
 
 `shuttle_mdp/validate_shuttle.py` runs the experiments below and writes `results/shuttle/validation.md`; `tests/test_shuttle.py` contains 14 pytest checks of the same facts with tolerances.
 
-1. **Horizon test (T3).** The error $\max_s |V_0^T - V^*|$ of the $T$-period enumeration is 3420 for $T = 1$, 917 for $T = 10$, 52.2 for $T = 50$, 4.02 for $T = 100$, 0.024 for $T = 200$ and $3.1 \times 10^{-9}$ for $T = 500$. Every value is below the bound $\gamma^T \max_s V^*(s)$ (Figure 8). With $T = 1$ the value is exactly $2s$ and the policy never dispatches, as a hand calculation requires.
-2. **Enumeration of all threshold policies (T4).** Every policy "dispatch iff $s \ge \theta$", $\theta = 0, \dots, 201$, was evaluated exactly. The minimiser is $\theta = 13$ both for $V(0)$ and for the state average, with $V(0) = 576.6702$, equal to the policy-iteration value. Dispatching only when the shuttle is full ($\theta = 15$) costs 597.36, never dispatching costs 2203.91 (Figure 9).
+1. **Horizon test (T3).** The error $\max_s |V_0^T - V^*|$ of the $T$-period enumeration is 3420 for $T = 1$, 917 for $T = 10$, 52.2 for $T = 50$, 4.02 for $T = 100$, 0.024 for $T = 200$ and $3.1 \times 10^{-9}$ for $T = 500$. Every value is below the bound $\gamma^T \max_s V^*(s)$ (Figure FIG(fig_val_horizon_error)). With $T = 1$ the value is exactly $2s$ and the policy never dispatches, as a hand calculation requires.
+2. **Enumeration of all threshold policies (T4).** Every policy "dispatch iff $s \ge \theta$", $\theta = 0, \dots, 201$, was evaluated exactly. The minimiser is $\theta = 13$ both for $V(0)$ and for the state average, with $V(0) = 576.6702$, equal to the policy-iteration value. Dispatching only when the shuttle is full ($\theta = 15$) costs 597.36, never dispatching costs 2203.91 (Figure FIG(fig_val_threshold_enumeration)).
 3. **Monte Carlo policy evaluation (T5).** 20,000 simulated 500-period trajectories of the optimal policy give mean discounted costs of $576.78 \pm 0.43$ from $s = 0$, $676.54 \pm 0.43$ from $s = 13$, $1001.63 \pm 0.43$ from $s = 50$, $1709.29 \pm 0.61$ from $s = 100$ and $3822.37 \pm 1.04$ from $s = 200$ (95% intervals). The Bellman solutions 576.67, 676.67, 1001.53, 1709.04 and 3821.59 all lie inside; the largest z-score is 1.47.
 4. **Deterministic arrivals (T7).** With $A_t \equiv 3$ the optimal trajectory from 0 is the cycle 3, 6, 9, 12, 15 and $V(0)$ is a geometric series that can be summed by hand: $(6\gamma + 12\gamma^2 + 18\gamma^3 + 24\gamma^4 + 100\gamma^5)/(1 - \gamma^5) = 569.753019$. The linear-solve value is 569.753019.
-5. **Parameter sensitivity (T6, Figure 10).** The threshold rises with the dispatch cost (8, 11, 13, 14, 15 for $c_f$ = 25, 50, 100, 200, 400; never dispatch at 800), falls with the holding cost (15, 14, 13, 11, 8, 5 for $c_h$ = 0.5, 1, 2, 4, 8, 16), rises with capacity (5, 9, 13, 16, 17, 17 for $K$ = 5, 10, 15, 20, 30, 50) and needs patience: with $\gamma \le 0.5$ the agent never dispatches, because 100 now can never be recovered from at most 30 of holding cost per period, while $\gamma \ge 0.9$ gives threshold 13. Each direction matches the economic reading of the costs.
+5. **Parameter sensitivity (T6, Figure FIG(fig_val_sensitivity)).** The threshold rises with the dispatch cost (8, 11, 13, 14, 15 for $c_f$ = 25, 50, 100, 200, 400; never dispatch at 800), falls with the holding cost (15, 14, 13, 11, 8, 5 for $c_h$ = 0.5, 1, 2, 4, 8, 16), rises with capacity (5, 9, 13, 16, 17, 17 for $K$ = 5, 10, 15, 20, 30, 50) and needs patience: with $\gamma \le 0.5$ the agent never dispatches, because 100 now can never be recovered from at most 30 of holding cost per period, while $\gamma \ge 0.9$ gives threshold 13. Each direction matches the economic reading of the costs.
 6. **Agreement and structure (T1, T2, T8, T10)** as described above: stochastic $P$, three identical policies, values equal to $10^{-9}$, exact $c_f$ gap at $s = 0$, insensitivity to the cap, monotone $V^*$ and threshold policy.
 7. **First steps of a trajectory.** The table below follows the optimal policy from an empty station (seed 1). The station fills by 1 to 5 customers per period, dispatches as soon as 13 or more wait, and the shuttle leaves 0 customers behind in each of these dispatches.
 
@@ -141,7 +141,23 @@ Each run logs every episode (`episodes.csv`) and every update (`updates.csv`: lo
 
 ## CartPole-v1
 
-CARTPOLE_PART1_PLACEHOLDER
+**Prescribed setting (Adam, learning rate 0.01, $\gamma = 0.95$, 2000 episodes, 5 seeds).** Every seed learns to balance: the 100-episode moving average peaks at 389, 500, 500, 336 and 395, and two seeds reach a moving average of at least 475 (seed 2 at episode 344, seed 1 at episode 1425). No seed stays there. The final moving averages are 37, 159, 9, 46 and 9, and the 500-episode roll-outs of the final networks give means of 62.9, 137.1, 9.4, 9.8 and 9.4 (standard deviations 6.0, 13.1, 0.8, 1.5, 0.8; greedy actions: 64, 136, 9, 10, 9). Three of five seeds end in a collapsed policy that always pushes to one side, which fails after 9 steps, the shortest possible episode; their final entropies are 0.033, 0.148 and 0.000 nats against 0.185 and 0.082 for the two others. Figure FIG(none_lr0.01_seed1_training) shows seed 1 (the best final roll-out) with the required overlay, Figure FIG(none_lr0.01_seed1_hist) its roll-out histogram, and Figure FIG(seeds_none_lr0.01) all five seeds.
+
+![Part 1, CartPole-v1, lr = 0.01, seed 1: episode reward and its 100-episode moving average.](../results/cartpole/figures/per_run/none_lr0.01_seed1_training.png){ width=80% }
+
+![Part 1, CartPole-v1, lr = 0.01, seed 1: 500 roll-out episodes of the final policy (sampled actions), mean 137.1, std 13.1.](../results/cartpole/figures/per_run/none_lr0.01_seed1_hist.png){ width=62% }
+
+![Part 1, CartPole-v1, lr = 0.01: moving-average reward of all five seeds. Each seed reaches 336 or more and later drops; seeds 2 and 4 collapse to the 9-step policy.](../results/cartpole/figures/seeds_none_lr0.01.png){ width=80% }
+
+**Why the prescribed setting collapses.** The surrogate loss is a sum over the episode, so the gradient of a 500-step episode is about 25 times larger than that of a 20-step one, and all returns are positive. Adam divides by a root-mean-square of past gradients with a memory of about 1000 updates, so the first long episodes produce steps far above the recent scale; the policy becomes deterministic (entropy near zero), and once $\pi(a|s) \to 1$ the score function $\nabla \log \pi$ vanishes, so a collapsed one-sided policy is a stationary point from which REINFORCE cannot escape. Dividing the loss by the episode length (`--loss-norm mean`, same learning rate) makes this worse rather than better: roll-out means 9.4, 9.4, 90.1, 9.3, 9.4, because it removes the natural down-weighting of the short, uninformative early episodes.
+
+**Smaller learning rates (3000 episodes, 5 seeds each).** With learning rate 0.003 the peaks are 500, 373, 500, 499, 500 and the final roll-outs 146.7, 181.0, 500.0, 125.7, 71.9 (mean 205.1); no seed collapses to 9, but four of five drift away from 500. With learning rate 0.001 the peaks are 466, 486, 500, 465, 478, the final roll-outs 232.4, 165.0, 400.4, 209.0, 142.0 (mean 229.8; greedy actions 244, 184, 500, 250, 157), no seed collapses, and the curves stay within 120 to 440 after episode 1500 (Figure FIG(compare_lr_none)). Learning rate 0.001 is therefore the setting used as the stable Part 1 reference; its best seed is shown in Figures FIG(none_lr0.001_seed2_training) and FIG(none_lr0.001_seed2_hist) (roll-out mean 400.4, std 142.1 with sampled actions; 500.0 with greedy actions). The remaining gap to 500 with sampled actions is exploration noise of a policy that keeps an entropy of about 0.3 nats, which Part 2 removes.
+
+![Part 1, CartPole-v1 without baseline: mean and standard deviation over 5 seeds of the moving-average reward for learning rates 0.01 (sum and length-normalised loss), 0.003 and 0.001.](../results/cartpole/figures/compare_lr_none.png){ width=80% }
+
+![Part 1, CartPole-v1, lr = 0.001, seed 2: episode reward and 100-episode moving average.](../results/cartpole/figures/per_run/none_lr0.001_seed2_training.png){ width=80% }
+
+![Part 1, CartPole-v1, lr = 0.001, seed 2: 500 roll-out episodes (sampled actions), mean 400.4, std 142.1.](../results/cartpole/figures/per_run/none_lr0.001_seed2_hist.png){ width=62% }
 
 ## Pong-v5
 
@@ -171,7 +187,37 @@ PONG_PART1_PLACEHOLDER
 
 ## Tests that validate correctness (Part 1)
 
-PG1_TESTS_PLACEHOLDER
+`tests/test_policy_gradient.py` (11 pytest checks) covers the mechanics; `policy_gradient/validate_cartpole.py` (V1 to V6) and `policy_gradient/validate_pong.py` (P1 to P7) run the experiments below and write `validation.md` in the results folders.
+
+**CartPole-v1.**
+
+1. **Unit checks.** The discounted-return recursion equals a brute-force double sum on random reward sequences and gives $[1.75, 1.5, 1]$ for rewards $[1,1,1]$ with $\gamma = 0.5$. One Adam step on two copies of the same state with advantages $+1$ for action 0 and $-1$ for action 1 raises $\pi(0|s)$. A zero advantage gives an exactly zero gradient on every parameter.
+2. **Random-policy level (V1).** 500 episodes of an untrained network score $20.3 \pm 10.4$ (max 97), the known level of a random CartPole policy, so the environment loop and the sampling are correct and every learning curve starts at the right place.
+3. **Sign and magnitude of the update (V2, Figure FIG(fig_val_controls)).** Three 300-episode runs from the same seed: with learning rate 0 the 20-episode average stays at the random level (20.2 in the first 50 episodes, 18.9 in the last 50); with the normal update it rises from 25.8 to 65.7; with the advantages negated it falls from 12.4 to 9.2, the shortest possible episode. Flipping the sign of the estimator produces the mirror-image behaviour, which a wrong gradient would not.
+4. **Physical sanity of the learned policy (V4, V4b).** For the best trained network (value baseline, learning rate 0.001, seed 2, roll-out 500.0) the mirror test on 2000 visited states gives $|P(\text{right}|s) - P(\text{left}|-s)| = 0.053$ on average with correlation 0.997 between the two probabilities; the dynamics are mirror symmetric, so this is the expected result. On 8 states with the pole clearly falling ($|\theta| \ge 0.1$ rad and $|\dot\theta| \ge 1$ rad/s in the same direction) the policy pushes toward the fall with probability at least 0.9997 in every state (untrained network: 0.45). An earlier checkpoint with the same roll-out score of 500.0 (value baseline, learning rate 0.01, seed 0) failed the mirror test (mean difference 0.49, correlation 0.10): it balanced by dithering around a bias and reacting only to larger deviations. Two policies with the same score therefore differ in quality, and the symmetry test separates them.
+5. **Return scale (V5).** The largest $G_t$ over 20 trained episodes is 20.000, the bound $1/(1-\gamma)$; the implementation never exceeds it and the learning signal is local as described above.
+6. **Step-by-step trace (V6).** The table below lists the first 10 steps of the trained policy. $P(\text{right})$ follows the sign of $\dot\theta$: 0.07 when $\dot\theta = -0.28$ rad/s, 0.88 to 0.99 when $\dot\theta$ is between $+0.22$ and $+0.55$ rad/s, and about 0.3 to 0.5 when the pole is nearly still, which is how a balancing controller must behave.
+7. **Collapse diagnosis.** The three collapsed seeds at learning rate 0.01 end with policy entropy 0.000 to 0.033 nats and roll-out standard deviation below 1.5, against entropies 0.08 to 0.19 for the seeds that kept a working policy; the collapse is a deterministic one-sided policy, not a logging or evaluation error, and the greedy roll-outs (9 to 10) confirm it.
+8. **Seeds and repeats.** Every configuration was run with 5 seeds (12 configurations, 60 runs), so every claim above rests on a distribution rather than one run.
+
+| t | x | x_dot | theta | theta_dot | P(right) | action | reward |
+|---|---|---|---|---|---|---|---|
+| 0 | -0.020 | +0.037 | -0.049 | +0.032 | 0.48 | right | 1 |
+| 1 | -0.019 | +0.233 | -0.049 | -0.276 | 0.07 | left | 1 |
+| 2 | -0.015 | +0.039 | -0.054 | +0.001 | 0.39 | left | 1 |
+| 3 | -0.014 | -0.156 | -0.054 | +0.276 | 0.88 | left | 1 |
+| 4 | -0.017 | -0.350 | -0.049 | +0.551 | 0.99 | right | 1 |
+| 5 | -0.024 | -0.154 | -0.038 | +0.244 | 0.87 | right | 1 |
+| 6 | -0.027 | +0.042 | -0.033 | -0.061 | 0.31 | left | 1 |
+| 7 | -0.026 | -0.153 | -0.034 | +0.221 | 0.84 | right | 1 |
+| 8 | -0.029 | +0.043 | -0.030 | -0.082 | 0.28 | left | 1 |
+| 9 | -0.028 | -0.152 | -0.031 | +0.201 | 0.82 | right | 1 |
+
+![Test V2: 300-episode controls with learning rate 0, the normal update, and negated advantages (20-episode moving average).](../results/cartpole/validation/fig_val_controls.png){ width=78% }
+
+**Pong-v5.**
+
+PONG_TESTS_PLACEHOLDER
 
 ## With three more months (Part 1)
 
@@ -197,7 +243,29 @@ The learned baseline removes the part of $G_t$ that is predictable from the stat
 
 ## CartPole-v1 with a baseline
 
-PG2_CARTPOLE_PLACEHOLDER
+With the learned value baseline at the prescribed learning rate 0.01, every seed reaches a moving average of at least 475 (at episodes 500, 474, 792, 271 and 488, against 2 of 5 seeds without a baseline), the final roll-outs are 500.0, 500.0, 315.9, 500.0 and 9.3 (mean 365.0; greedy actions 500, 500, 318, 500, 9), and one seed collapses late in training. The constant baseline at the same learning rate reaches 475 in every seed (episodes 481, 808, 1278, 171, 369), never collapses, and rolls out at 226.5, 500.0, 394.8, 500.0 and 421.8 (mean 408.6). Figure FIG(compare_baselines_lr0.01) compares the three variants at learning rate 0.01, Figures FIG(value_lr0.01_seed0_training) and FIG(value_lr0.01_seed0_hist) show the value-baseline run of seed 0 with its roll-out histogram (500.0 in all 500 episodes).
+
+![Part 2, CartPole-v1, lr = 0.01: mean and standard deviation over 5 seeds of the moving-average reward without baseline, with the constant baseline and with the learned value baseline.](../results/cartpole/figures/compare_baselines_lr0.01.png){ width=80% }
+
+![Part 2, CartPole-v1, value baseline, lr = 0.01, seed 0: episode reward and 100-episode moving average.](../results/cartpole/figures/per_run/value_lr0.01_seed0_training.png){ width=80% }
+
+![Part 2, CartPole-v1, value baseline, lr = 0.01, seed 0: 500 roll-out episodes (sampled actions), mean 500.0, std 0.0.](../results/cartpole/figures/per_run/value_lr0.01_seed0_hist.png){ width=62% }
+
+The table gives the mean over seeds of the 500-episode roll-out mean for every configuration (3000 training episodes for learning rates 0.003 and 0.001, 2000 otherwise).
+
+| baseline | lr 0.01 | lr 0.01, loss / T | lr 0.003 | lr 0.001 |
+|---|---|---|---|---|
+| none | 45.7 (3 of 5 collapsed) | 25.5 (4 of 5 collapsed) | 205.1 | 229.8 |
+| constant (mean return) | 408.6 | 499.4 | 500.0 | 452.8 |
+| learned V(s) | 365.0 (1 collapsed) | 368.8 | 383.4 | 481.5 |
+
+The constant baseline with learning rate 0.003 solves the task in all five seeds (roll-outs 499.9, 500.0, 500.0, 500.0, 500.0; Figures FIG(mean_lr0.003_seed1_training) and FIG(mean_lr0.003_seed1_hist)), and the learned value baseline with learning rate 0.001 gives 493.4, 499.8, 500.0, 415.8, 498.7 (greedy actions 500, 500, 500, 489, 500; Figure FIG(compare_baselines_lr0.001)). On CartPole the constant baseline is the more reliable of the two at large learning rates because the value network, fitted on one episode at a time, is itself noisy during the first few hundred episodes and adds variance until it converges; the gradient-variance measurements in the tests below show that both baselines remove about 98 percent of the estimator variance once the policy is good.
+
+![Part 2, CartPole-v1, constant baseline, lr = 0.003, seed 1: episode reward and 100-episode moving average.](../results/cartpole/figures/per_run/mean_lr0.003_seed1_training.png){ width=80% }
+
+![Part 2, CartPole-v1, constant baseline, lr = 0.003, seed 1: 500 roll-out episodes (sampled actions), mean 500.0, std 0.0.](../results/cartpole/figures/per_run/mean_lr0.003_seed1_hist.png){ width=62% }
+
+![Part 2, CartPole-v1, lr = 0.001: mean and standard deviation over 5 seeds of the moving-average reward for the three variants.](../results/cartpole/figures/compare_baselines_lr0.001.png){ width=80% }
 
 ## Pong-v5 with a baseline
 
@@ -205,11 +273,26 @@ PG2_PONG_PLACEHOLDER
 
 ## Edge cases (Part 2)
 
-PG2_EDGE_PLACEHOLDER
+- **A baseline that depends on the action biases the gradient.** A value network fitted on the current episode before computing its advantages would make $b_t$ a function of the sampled actions. The implementation computes the advantages with the parameters from before the update and fits the network afterwards, so $b_t$ depends on the state and on past episodes only. The gradient-variance test checks that the mean gradient keeps its direction (cosines 0.93 to 0.95 with the no-baseline mean at the trained policy).
+- **An untrained value network adds noise.** In the first episodes $V_\phi$ is random, so $G_t - V_\phi(s_t)$ can have a larger spread than $G_t$ itself; the measured reduction is 4.0x at the untrained policy and 52x at the trained one. This is why the value baseline at learning rate 0.01 still loses one seed on CartPole while the constant baseline loses none.
+- **Initialising the constant baseline.** The moving average starts at the first episode's mean return (not at 0); a baseline far below the current returns would recreate the all-positive-advantage situation of Part 1. The rate 0.05 per episode (0.1 per batch on Pong) follows the rising returns, from about 10 to 20 on CartPole.
+- **Near-zero gradient at the solution.** With the returns bounded by 20, a good baseline makes $G_t - b_t \approx 0$ in every state once the policy is good, and the update stops growing with the episode length. The measured norm of the mean gradient at the trained policy is 94 without a baseline and 8 to 10 with either baseline; the first keeps pushing the policy toward determinism, the second does not, which is why the collapses disappear.
+- **Pong value network.** A 6400-input regression on 10 games can overfit; the network is fitted for only 2 passes per batch, its loss is logged in `updates.csv`, and the standard deviation of the advantage is logged next to that of $G_t$ so the variance reduction is visible during training (Figure FIG(compare_advantage_std) in the Pong section). The constant baseline on Pong tracks the batch mean of $G_t$, which moves from about $-2$ early in training toward 0 as the agent wins points.
+- **Truncated episodes.** The value targets on CartPole are the truncated returns, consistent with the policy objective; near the 500-step cap $V_\phi$ learns the shortened returns and the advantages stay centred.
 
 ## Tests that validate correctness (Part 2)
 
-PG2_TESTS_PLACEHOLDER
+**CartPole-v1.**
+
+1. **Variance of the gradient estimate (V3, Figure FIG(fig_val_gradient_variance)).** Per-episode REINFORCE gradients were computed for the same sampled episodes with the three advantage choices (same policy, same actions). At an untrained policy (200 episodes, mean reward 20) the trace of the gradient covariance is 5212 with no baseline, 1954 with the constant baseline (2.7x smaller) and 1309 with the learned value baseline (4.0x smaller); the signal-to-noise ratio of the 200-episode average gradient rises from 3.0 to 4.8 and 6.4. At the trained policy (100 episodes, mean reward 500) the traces are 792,725, 15,211 and 15,200: both baselines remove 98 percent of the variance (52x). The cosines between the mean gradients and the no-baseline mean are 0.80 and 0.76 (untrained) and 0.95 and 0.93 (trained), consistent with an unchanged expectation given the sampling noise.
+2. **Outcome across seeds.** At learning rate 0.01, collapses drop from 3 of 5 seeds to 0 of 5 (constant) and 1 of 5 (value), and the moving average reaches 475 in 5 of 5 seeds with either baseline against 2 of 5 without. The table in the previous section gives the roll-out means for all 12 configurations.
+3. **Same tests as Part 1.** The Part 2 policies pass the mirror test (mean difference 0.053, correlation 0.997) and the obvious-state test (probability of pushing toward the fall at least 0.9997 in all 8 states); the Part 2 code paths share the return, loss and roll-out code with Part 1, so the unit checks apply unchanged.
+
+![Test V3: trace of the covariance of the per-episode gradient (log scale) for no baseline, the constant baseline and the learned value baseline, at an untrained and at a trained CartPole policy.](../results/cartpole/validation/fig_val_gradient_variance.png){ width=85% }
+
+**Pong-v5.**
+
+PONG_TESTS2_PLACEHOLDER
 
 ## With three more months (Part 2)
 

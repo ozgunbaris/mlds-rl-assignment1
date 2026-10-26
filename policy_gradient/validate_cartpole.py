@@ -136,7 +136,7 @@ def main():
             "lr = 0.01, advantages negated": short_training(0, 0.01, -1.0, 300)}
     R["controls"] = {k: {"first50_mean": float(v[:50].mean()), "last50_mean": float(v[-50:].mean()), "min": float(v.min())} for k, v in ctrl.items()}
     viz.compare_curves(ctrl, os.path.join(args.out, "fig_val_controls.png"),
-                       "CartPole-v1 controls (300 episodes, seed 0): learning rate 0, normal REINFORCE, negated advantages", window=20,
+                       "CartPole-v1 controls, 300 episodes, seed 0", window=20,
                        ylabel="episode reward (20-episode moving average)")
     note("V2 controls", "; ".join(f"{k}: first 50 episodes mean {v['first50_mean']:.1f}, last 50 mean {v['last50_mean']:.1f}" for k, v in R["controls"].items()) +
          ". With lr = 0 the reward stays at the random level, with negated advantages the agent learns to fail as fast as possible (minimum possible length is about 8-9 steps).")

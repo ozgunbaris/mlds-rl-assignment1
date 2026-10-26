@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Build report/report.pdf from report/report.md (needs pandoc and xelatex). Run from the repository root.
+# Build report/report.pdf from report/report.md (needs pandoc and xelatex).
 set -e
-cd "$(dirname "$0")"
-pandoc report.md -o report.pdf --pdf-engine=xelatex --resource-path=.:.. -V linkcolor=blue
-echo "wrote report/report.pdf"
+cd "$(dirname "$0")/.."
+.venv/bin/python report/build.py 2>/dev/null || python3 report/build.py
