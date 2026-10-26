@@ -1,0 +1,2 @@
+ep  1000 | reward  500.0 | MA100  500.0 | entropy 0.329 |   62.8s
+ep  2000 | reward  500.0 | MA100  500.0 | entropy 0.286 |  135.8s

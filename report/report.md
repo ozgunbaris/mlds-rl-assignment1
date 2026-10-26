@@ -149,7 +149,25 @@ PONG_PART1_PLACEHOLDER
 
 ## Edge cases (Part 1)
 
-PG1_EDGE_PLACEHOLDER
+**CartPole-v1.**
+
+- *Truncation at 500 steps.* CartPole-v1 ends with `truncated = True` after 500 steps. REINFORCE treats that step as the end of the episode and does not bootstrap, so the returns of the last steps before a truncation are smaller than the infinite-horizon values. With $\gamma = 0.95$ a return 60 steps before the cut is within $0.95^{60} \cdot 20 = 0.9$ of its untruncated value, so only the tail of a perfect episode is affected, and all those returns stay positive. The roll-out statistics count a 500-step episode as reward 500.
+- *All rewards are +1.* Without a baseline every $G_t$ is positive, so every sampled action is reinforced; learning only comes from differences between the returns of different steps and episodes. This is the main source of variance and is quantified in Part 2.
+- *Short early episodes and the return scale.* The first episodes last 8 to 30 steps and $G_t \le 1/(1-\gamma) = 20$ for every $t$; a 20-step survival already gives $G_0 = 12.8$ and a 500-step one gives 20.0 (validation V5). The learning signal therefore only distinguishes the next 20 to 60 steps, which is enough for balancing but makes the objective nearly flat once episodes are long.
+- *Growing gradient scale and collapse.* The episode gradient is a sum over $T$ steps with returns up to 20, so its scale grows by a factor of about 25 between a 20-step and a 500-step episode. Adam normalises by a running root-mean-square with a memory of about 1000 updates, so when episodes suddenly become long the steps become too large. The policy then becomes deterministic ($\text{entropy} \to 0$; the gradient $\nabla \log \pi(a|s) \to 0$ when $\pi(a|s) \to 1$), and a policy that collapsed onto a bad action cannot recover because its gradient vanishes. This is observed in 3 of 5 seeds at learning rate 0.01 (final roll-out mean 9.4, always pushing to one side) and motivates the smaller learning rate and the length-normalised loss reported below.
+- *Numerical safety.* Log-probabilities are computed with `log_softmax` and actions are sampled from `Categorical(logits=...)`, so a near-deterministic policy never produces $\log 0$ or a NaN gradient; a zero advantage gives an exactly zero gradient (unit test).
+- *Seed dependence.* Results differ a lot between seeds, so every configuration was run with 5 seeds and the comparison plots show the mean and standard deviation across seeds rather than one run.
+
+**Pong-v5.**
+
+- *Automatic reset inside the vector environment.* With gymnasium 1.4 the step after a terminal step returns the first observation of the next game, ignores the action and gives reward 0. That step must not be recorded as a transition and the difference frame must restart from an all-zero previous frame; the `FrameTracker` class handles it, a unit test exercises the sequence (terminal step, reset step, first real step), and the training loop asserts after every episode that its own episode reward and length equal the ones reported by gymnasium's `RecordEpisodeStatistics` wrapper (no mismatch occurred in about N_PONG_EPISODES episodes).
+- *First frame of a game.* There is no previous frame, so the input is the first frame itself; this is the only input that shows the static paddles, and a test checks it.
+- *In-place preprocessing.* The assignment's `preprocess()` edits its input in place; applied to the shared observation buffer of the vector environment it would corrupt later observations, so the function first copies the crop. A test checks that the frame is unchanged after preprocessing.
+- *Two of six actions.* Only indices 0 and 1 of the policy exist, mapped to environment actions 2 (RIGHT, measured to move the paddle up) and 3 (LEFT, down). Pong serves automatically, so FIRE is not needed; the action counter at the end of each run confirms that no other action was sent, and every recorded game reached 21 points for one side.
+- *Sticky actions.* `Pong-v5` repeats the previous action with probability 0.25 regardless of the agent's choice. The recorded action is the one the agent sampled, which is the correct quantity for the policy gradient; the repetition is part of the environment's transition noise and makes the game stochastic even for a fixed seed.
+- *Sparse rewards and long episodes.* Rewards are $\pm 1$ at the 21 to 41 points of a game and 0 elsewhere; a game lasts from about 800 steps (losing 21-0 quickly) to several thousand steps once rallies get longer. $G_t$ is computed over the whole episode as required, but with $\gamma = 0.99$ a point's reward is discounted by 0.37 after 100 steps, so each return is dominated by the next point (validation P4 shows the sawtooth). Inputs are stored as int8 and the update works in chunks, so a batch of 10 long games fits in memory.
+- *In-flight trajectories at update time.* With four parallel games, up to three games are unfinished when the batch of 10 completes; they continue under the updated policy and are used with log-probabilities recomputed at their own update, so the gradient is always taken at the current parameters and the data is at most one update old.
+- *Frame limit.* The environment also truncates a game after 108,000 frames (27,000 steps); this never happened (the longest recorded game had N_PONG_MAXLEN steps) and would be treated like a terminal step.
 
 ## Tests that validate correctness (Part 1)
 
@@ -157,8 +175,46 @@ PG1_TESTS_PLACEHOLDER
 
 ## With three more months (Part 1)
 
-PG1_MONTHS_PLACEHOLDER
+- Run every Pong configuration with at least 5 seeds (only one seed per configuration fit in the time available) and report confidence bands on the learning curves and on the time to reach a given score.
+- Validate the gradient estimator on a problem with a known exact gradient: a two-state bandit or a small gridworld where $\nabla_\theta J(\theta)$ can be computed from the MDP, and compare the REINFORCE estimate (same code path) with the exact gradient and with a finite-difference estimate of $J$.
+- Compare against a reference implementation (for example CleanRL) on CartPole with identical seeds and hyperparameters; identical learning curves would rule out implementation errors that only show up as slower learning.
+- Study the CartPole collapse in detail: log Adam's second-moment statistics and the parameter change per update, then test gradient clipping, learning-rate decay and an entropy bonus, and map the region of learning rates and loss scalings where the collapse disappears.
+- Evaluate during training with a fixed set of evaluation seeds and greedy actions, so that the reported curve measures the policy rather than the exploration noise.
+- Pong ablations: difference frame vs. a stack of 2 to 4 frames, a small convolutional policy, $\gamma \in \{0.95, 0.99, 0.999\}$, batch sizes 1 to 40 episodes, restarting the return at every point (Karpathy's trick) vs. the full-episode return, and sticky actions off, to measure how much of the roll-out spread is environment noise.
+- Robustness tests of the trained Pong policy: horizontally mirrored frames, random no-op starts, a different frame skip, and an opponent with a different difficulty setting.
+- Train Pong until the agent wins consistently (score above 0) and record the number of frames needed, then profile and parallelise the collection (more environments, GPU for the update) since compute was the binding constraint here.
 
 # Policy Gradient Part 2: REINFORCE with a baseline
 
-PG2_PLACEHOLDER
+## Baselines used
+
+Two baselines are implemented in the same scripts (`--baseline mean` and `--baseline value`); both leave the gradient unbiased because neither depends on the action taken at step $t$.
+
+- **Constant baseline** (`mean`): $b$ is an exponential moving average of the mean discounted return. CartPole updates it once per episode with rate 0.05 (initialised with the first episode's mean $G_t$); Pong updates it once per batch of 10 episodes with rate 0.1.
+- **Learned state-value baseline** (`value`, the main choice for Part 2): a second network $V_\phi(s)$ with the same architecture as the policy but one output (4-128-1 for CartPole, 6400-200-1 for Pong). The advantage is $A_t = G_t - V_\phi(s_t)$ with $V_\phi$ detached, computed with the parameters $\phi$ from *before* the current update so that the baseline is a function of the state only. After the policy step, $\phi$ is fitted to the Monte Carlo targets $G_t$ by least squares: 5 Adam steps (learning rate equal to the policy's) on the episode for CartPole, and 2 passes over the batch in minibatches of 2048 steps with learning rate $10^{-3}$ for Pong. The policy update is otherwise identical to Part 1, including the learning rates.
+
+The learned baseline removes the part of $G_t$ that is predictable from the state (how long the pole is likely to survive from here; whether the ball is about to pass the paddle), so the remaining advantage reflects the effect of the action. The constant baseline only removes the common level of the returns. Both reductions are measured directly in the tests below.
+
+## CartPole-v1 with a baseline
+
+PG2_CARTPOLE_PLACEHOLDER
+
+## Pong-v5 with a baseline
+
+PG2_PONG_PLACEHOLDER
+
+## Edge cases (Part 2)
+
+PG2_EDGE_PLACEHOLDER
+
+## Tests that validate correctness (Part 2)
+
+PG2_TESTS_PLACEHOLDER
+
+## With three more months (Part 2)
+
+- Measure the bias of the value baseline when the value network is fitted on the same episode that is used in the update (the implementation avoids this by using the pre-update network, but the alternative is common and its bias could be quantified by comparing the mean gradients over many episodes).
+- Compare the variance and sample efficiency of the two baselines with reward-to-go only, with per-time-step baselines $b_t$, with normalised advantages, with generalised advantage estimation at several $\lambda$, and with a bootstrapped critic (actor-critic), all on the same seeds and budgets.
+- Vary the capacity and the number of fitting steps of the value network to map how under- and over-fitting of $V_\phi$ changes the variance reduction and the final score.
+- Run 5 or more seeds for Pong with and without the baseline and test the difference in the number of episodes to reach -15, -10 and 0 with a paired test across seeds.
+- Try a shared trunk for policy and value on Pong and measure whether the value loss gradients help or hurt the policy features.

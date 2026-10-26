@@ -26,6 +26,7 @@ def main():
     p.add_argument("--labels", nargs="*", default=None)
     p.add_argument("--out", default="results/pong/figures")
     p.add_argument("--window", type=int, default=100)
+    p.add_argument("--diag-runs", type=int, default=None, help="only the first N runs appear in the entropy/advantage plots")
     args = p.parse_args()
     os.makedirs(args.out, exist_ok=True)
     labels = args.labels or [os.path.basename(r.rstrip("/")) for r in args.runs]
@@ -62,7 +63,7 @@ def main():
         curves_steps[label] = (steps, ma)
         curves_time[label] = (wall, ma)
         ups = read_csv(os.path.join(run, "updates.csv"))
-        if ups:
+        if ups and (args.diag_runs is None or k < args.diag_runs):
             u = np.array([int(r["update"]) for r in ups])
             ax_adv.plot(u, [float(r["G_std"]) for r in ups], color=viz.SERIES[k], lw=1.2, alpha=0.5, label=f"{label}: std of G_t")
             ax_adv.plot(u, [float(r["adv_std"]) for r in ups], color=viz.SERIES[k], lw=2, label=f"{label}: std of advantage")

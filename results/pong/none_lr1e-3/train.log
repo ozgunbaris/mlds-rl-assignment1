@@ -214,3 +214,17 @@ upd   188 | ep   1880 | batch R -18.60 | MA100 -18.80 | steps  16105 | ent 0.450
 upd   189 | ep   1890 | batch R -18.10 | MA100 -18.82 | steps  16864 | ent 0.449 | gnorm 0.029 |    1701 st/s | 0.51 h
 upd   190 | ep   1900 | batch R -19.30 | MA100 -18.90 | steps  16457 | ent 0.451 | gnorm 0.027 |    1853 st/s | 0.52 h
 upd   191 | ep   1910 | batch R -18.90 | MA100 -18.89 | steps  16790 | ent 0.445 | gnorm 0.029 |    1603 st/s | 0.52 h
+upd   192 | ep   1920 | batch R -18.40 | MA100 -18.86 | steps  16959 | ent 0.449 | gnorm 0.026 |    1130 st/s | 0.52 h
+upd   193 | ep   1930 | batch R -18.20 | MA100 -18.79 | steps  17028 | ent 0.446 | gnorm 0.029 |    1522 st/s | 0.53 h
+upd   194 | ep   1940 | batch R -18.80 | MA100 -18.74 | steps  15852 | ent 0.452 | gnorm 0.030 |    1799 st/s | 0.53 h
+upd   195 | ep   1950 | batch R -17.50 | MA100 -18.54 | steps  18168 | ent 0.446 | gnorm 0.025 |    1774 st/s | 0.53 h
+upd   196 | ep   1960 | batch R -18.60 | MA100 -18.57 | steps  17032 | ent 0.451 | gnorm 0.023 |    1685 st/s | 0.53 h
+upd   197 | ep   1970 | batch R -18.20 | MA100 -18.46 | steps  17270 | ent 0.444 | gnorm 0.023 |    1803 st/s | 0.54 h
+upd   198 | ep   1980 | batch R -17.70 | MA100 -18.37 | steps  17448 | ent 0.448 | gnorm 0.022 |    1542 st/s | 0.54 h
+upd   199 | ep   1990 | batch R -17.40 | MA100 -18.30 | steps  17964 | ent 0.446 | gnorm 0.024 |    1735 st/s | 0.54 h
+upd   200 | ep   2000 | batch R -18.60 | MA100 -18.23 | steps  17509 | ent 0.453 | gnorm 0.023 |    1777 st/s | 0.55 h
+upd   201 | ep   2010 | batch R -17.00 | MA100 -18.04 | steps  18551 | ent 0.448 | gnorm 0.023 |    1618 st/s | 0.55 h
+upd   202 | ep   2020 | batch R -18.20 | MA100 -18.02 | steps  18327 | ent 0.449 | gnorm 0.027 |    1740 st/s | 0.55 h
+upd   203 | ep   2030 | batch R -17.80 | MA100 -17.98 | steps  17731 | ent 0.453 | gnorm 0.027 |    1456 st/s | 0.56 h
+upd   204 | ep   2040 | batch R -18.60 | MA100 -17.96 | steps  17809 | ent 0.454 | gnorm 0.024 |    1511 st/s | 0.56 h
+upd   205 | ep   2050 | batch R -18.20 | MA100 -18.03 | steps  18329 | ent 0.454 | gnorm 0.024 |    1653 st/s | 0.56 h
