@@ -1,0 +1,216 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+training Pong: baseline=none lr=0.001 num_envs=4 batch_episodes=10
+upd     1 | ep     10 | batch R -20.00 | MA100 -20.00 | steps  10659 | ent 0.692 | gnorm 0.031 |    3119 st/s | 0.00 h
+upd     2 | ep     20 | batch R -20.60 | MA100 -20.30 | steps  10087 | ent 0.692 | gnorm 0.035 |    2937 st/s | 0.00 h
+upd     3 | ep     30 | batch R -20.60 | MA100 -20.40 | steps   9660 | ent 0.692 | gnorm 0.040 |    3202 st/s | 0.00 h
+upd     4 | ep     40 | batch R -19.90 | MA100 -20.27 | steps  11309 | ent 0.692 | gnorm 0.040 |    3009 st/s | 0.00 h
+upd     5 | ep     50 | batch R -20.50 | MA100 -20.32 | steps   9933 | ent 0.691 | gnorm 0.041 |    3034 st/s | 0.00 h
+upd     6 | ep     60 | batch R -20.50 | MA100 -20.35 | steps  10184 | ent 0.690 | gnorm 0.032 |    2882 st/s | 0.01 h
+upd     7 | ep     70 | batch R -20.40 | MA100 -20.36 | steps  10153 | ent 0.689 | gnorm 0.044 |    3048 st/s | 0.01 h
+upd     8 | ep     80 | batch R -20.40 | MA100 -20.36 | steps   9796 | ent 0.689 | gnorm 0.033 |    3096 st/s | 0.01 h
+upd     9 | ep     90 | batch R -20.30 | MA100 -20.36 | steps  10193 | ent 0.689 | gnorm 0.041 |    2959 st/s | 0.01 h
+upd    10 | ep    100 | batch R -20.30 | MA100 -20.35 | steps   9704 | ent 0.688 | gnorm 0.054 |    2821 st/s | 0.01 h
+upd    11 | ep    110 | batch R -20.50 | MA100 -20.40 | steps  10609 | ent 0.688 | gnorm 0.030 |    2962 st/s | 0.01 h
+upd    12 | ep    120 | batch R -20.50 | MA100 -20.39 | steps  10243 | ent 0.687 | gnorm 0.051 |    2380 st/s | 0.01 h
+upd    13 | ep    130 | batch R -20.50 | MA100 -20.38 | steps  10476 | ent 0.687 | gnorm 0.031 |    2721 st/s | 0.01 h
+upd    14 | ep    140 | batch R -20.40 | MA100 -20.43 | steps  10030 | ent 0.686 | gnorm 0.034 |    2800 st/s | 0.01 h
+upd    15 | ep    150 | batch R -20.50 | MA100 -20.43 | steps  10360 | ent 0.685 | gnorm 0.037 |    2707 st/s | 0.01 h
+upd    16 | ep    160 | batch R -20.30 | MA100 -20.41 | steps  10857 | ent 0.684 | gnorm 0.033 |    2773 st/s | 0.02 h
+upd    17 | ep    170 | batch R -20.20 | MA100 -20.39 | steps  10108 | ent 0.683 | gnorm 0.033 |    2732 st/s | 0.02 h
+upd    18 | ep    180 | batch R -20.20 | MA100 -20.37 | steps  10590 | ent 0.683 | gnorm 0.053 |    2805 st/s | 0.02 h
+upd    19 | ep    190 | batch R -20.70 | MA100 -20.41 | steps  10177 | ent 0.682 | gnorm 0.032 |    2534 st/s | 0.02 h
+upd    20 | ep    200 | batch R -20.40 | MA100 -20.42 | steps  11121 | ent 0.682 | gnorm 0.034 |    2562 st/s | 0.02 h
+upd    21 | ep    210 | batch R -20.40 | MA100 -20.41 | steps  10219 | ent 0.681 | gnorm 0.033 |    2581 st/s | 0.02 h
+upd    22 | ep    220 | batch R -20.50 | MA100 -20.41 | steps   9941 | ent 0.680 | gnorm 0.031 |    2798 st/s | 0.02 h
+upd    23 | ep    230 | batch R -20.60 | MA100 -20.42 | steps  10150 | ent 0.679 | gnorm 0.030 |    2196 st/s | 0.02 h
+upd    24 | ep    240 | batch R -20.60 | MA100 -20.44 | steps  10516 | ent 0.678 | gnorm 0.035 |    1829 st/s | 0.03 h
+upd    25 | ep    250 | batch R -20.50 | MA100 -20.44 | steps   9874 | ent 0.677 | gnorm 0.034 |    1464 st/s | 0.03 h
+upd    26 | ep    260 | batch R -20.30 | MA100 -20.44 | steps  10798 | ent 0.676 | gnorm 0.042 |    1718 st/s | 0.03 h
+upd    27 | ep    270 | batch R -20.80 | MA100 -20.50 | steps  10136 | ent 0.676 | gnorm 0.028 |    1840 st/s | 0.03 h
+upd    28 | ep    280 | batch R -20.80 | MA100 -20.56 | steps   9890 | ent 0.676 | gnorm 0.040 |    1849 st/s | 0.03 h
+upd    29 | ep    290 | batch R -20.40 | MA100 -20.53 | steps   9312 | ent 0.675 | gnorm 0.039 |    1893 st/s | 0.03 h
+upd    30 | ep    300 | batch R -20.10 | MA100 -20.50 | steps  10862 | ent 0.675 | gnorm 0.038 |    1497 st/s | 0.04 h
+upd    31 | ep    310 | batch R -20.70 | MA100 -20.53 | steps  10718 | ent 0.674 | gnorm 0.032 |    1714 st/s | 0.04 h
+upd    32 | ep    320 | batch R -20.80 | MA100 -20.56 | steps  10140 | ent 0.674 | gnorm 0.030 |    1595 st/s | 0.04 h
+upd    33 | ep    330 | batch R -20.30 | MA100 -20.53 | steps   9879 | ent 0.673 | gnorm 0.040 |    1785 st/s | 0.04 h
+upd    34 | ep    340 | batch R -20.00 | MA100 -20.47 | steps  10537 | ent 0.673 | gnorm 0.038 |    1822 st/s | 0.04 h
+upd    35 | ep    350 | batch R -20.40 | MA100 -20.46 | steps  11429 | ent 0.672 | gnorm 0.030 |    1544 st/s | 0.04 h
+upd    36 | ep    360 | batch R -20.70 | MA100 -20.50 | steps  10184 | ent 0.671 | gnorm 0.038 |    1668 st/s | 0.05 h
+upd    37 | ep    370 | batch R -20.50 | MA100 -20.47 | steps  10422 | ent 0.670 | gnorm 0.037 |    1673 st/s | 0.05 h
+upd    38 | ep    380 | batch R -20.50 | MA100 -20.44 | steps  10293 | ent 0.670 | gnorm 0.033 |    1490 st/s | 0.05 h
+upd    39 | ep    390 | batch R -20.30 | MA100 -20.43 | steps  10310 | ent 0.669 | gnorm 0.037 |    1211 st/s | 0.05 h
+upd    40 | ep    400 | batch R -20.10 | MA100 -20.43 | steps  10868 | ent 0.669 | gnorm 0.031 |    1704 st/s | 0.05 h
+upd    41 | ep    410 | batch R -20.40 | MA100 -20.40 | steps  10643 | ent 0.667 | gnorm 0.036 |    1638 st/s | 0.06 h
+upd    42 | ep    420 | batch R -20.20 | MA100 -20.34 | steps  11990 | ent 0.667 | gnorm 0.027 |    2041 st/s | 0.06 h
+upd    43 | ep    430 | batch R -20.30 | MA100 -20.34 | steps  10616 | ent 0.667 | gnorm 0.029 |    1860 st/s | 0.06 h
+upd    44 | ep    440 | batch R -20.40 | MA100 -20.38 | steps  10821 | ent 0.666 | gnorm 0.034 |    1468 st/s | 0.06 h
+upd    45 | ep    450 | batch R -20.40 | MA100 -20.38 | steps  12034 | ent 0.665 | gnorm 0.028 |    1828 st/s | 0.06 h
+upd    46 | ep    460 | batch R -20.30 | MA100 -20.34 | steps  10671 | ent 0.665 | gnorm 0.039 |    1786 st/s | 0.06 h
+upd    47 | ep    470 | batch R -19.90 | MA100 -20.28 | steps  10878 | ent 0.664 | gnorm 0.040 |    2043 st/s | 0.07 h
+upd    48 | ep    480 | batch R -20.20 | MA100 -20.25 | steps  10701 | ent 0.664 | gnorm 0.038 |    1234 st/s | 0.07 h
+upd    49 | ep    490 | batch R -20.20 | MA100 -20.24 | steps  10521 | ent 0.665 | gnorm 0.033 |    1243 st/s | 0.07 h
+upd    50 | ep    500 | batch R -20.40 | MA100 -20.27 | steps  10338 | ent 0.663 | gnorm 0.046 |    1346 st/s | 0.07 h
+upd    51 | ep    510 | batch R -20.50 | MA100 -20.28 | steps  11279 | ent 0.663 | gnorm 0.029 |    1516 st/s | 0.07 h
+upd    52 | ep    520 | batch R -20.20 | MA100 -20.28 | steps  10840 | ent 0.664 | gnorm 0.049 |    1223 st/s | 0.08 h
+upd    53 | ep    530 | batch R -20.70 | MA100 -20.32 | steps  10965 | ent 0.664 | gnorm 0.033 |    1495 st/s | 0.08 h
+upd    54 | ep    540 | batch R -20.50 | MA100 -20.33 | steps  10909 | ent 0.666 | gnorm 0.050 |    1280 st/s | 0.08 h
+upd    55 | ep    550 | batch R -20.50 | MA100 -20.34 | steps  11165 | ent 0.665 | gnorm 0.035 |    1272 st/s | 0.08 h
+upd    56 | ep    560 | batch R -20.30 | MA100 -20.34 | steps  11889 | ent 0.667 | gnorm 0.035 |    1268 st/s | 0.09 h
+upd    57 | ep    570 | batch R -19.90 | MA100 -20.34 | steps  11721 | ent 0.664 | gnorm 0.031 |    1218 st/s | 0.09 h
+upd    58 | ep    580 | batch R -20.70 | MA100 -20.39 | steps   9816 | ent 0.667 | gnorm 0.036 |    1186 st/s | 0.09 h
+upd    59 | ep    590 | batch R -19.90 | MA100 -20.36 | steps  12280 | ent 0.665 | gnorm 0.036 |    1087 st/s | 0.09 h
+upd    60 | ep    600 | batch R -20.60 | MA100 -20.38 | steps  10700 | ent 0.666 | gnorm 0.036 |    1299 st/s | 0.10 h
+upd    61 | ep    610 | batch R -20.50 | MA100 -20.38 | steps  10547 | ent 0.666 | gnorm 0.031 |    1235 st/s | 0.10 h
+upd    62 | ep    620 | batch R -20.40 | MA100 -20.40 | steps  10099 | ent 0.665 | gnorm 0.039 |    1168 st/s | 0.10 h
+upd    63 | ep    630 | batch R -20.20 | MA100 -20.35 | steps  11494 | ent 0.665 | gnorm 0.030 |    1058 st/s | 0.10 h
+upd    64 | ep    640 | batch R -20.00 | MA100 -20.30 | steps  11385 | ent 0.665 | gnorm 0.030 |    1053 st/s | 0.11 h
+upd    65 | ep    650 | batch R -19.70 | MA100 -20.22 | steps  11365 | ent 0.665 | gnorm 0.048 |     985 st/s | 0.11 h
+upd    66 | ep    660 | batch R -20.70 | MA100 -20.26 | steps  10842 | ent 0.663 | gnorm 0.034 |    1054 st/s | 0.11 h
+upd    67 | ep    670 | batch R -20.10 | MA100 -20.28 | steps  10619 | ent 0.664 | gnorm 0.038 |    1124 st/s | 0.12 h
+upd    68 | ep    680 | batch R -20.60 | MA100 -20.27 | steps   9971 | ent 0.664 | gnorm 0.043 |     958 st/s | 0.12 h
+upd    69 | ep    690 | batch R -20.40 | MA100 -20.32 | steps  11071 | ent 0.662 | gnorm 0.033 |    1100 st/s | 0.12 h
+upd    70 | ep    700 | batch R -20.70 | MA100 -20.33 | steps  10229 | ent 0.663 | gnorm 0.062 |    1386 st/s | 0.12 h
+upd    71 | ep    710 | batch R -20.30 | MA100 -20.31 | steps  11046 | ent 0.662 | gnorm 0.039 |    1097 st/s | 0.13 h
+upd    72 | ep    720 | batch R -20.60 | MA100 -20.33 | steps  10518 | ent 0.662 | gnorm 0.048 |     927 st/s | 0.13 h
+upd    73 | ep    730 | batch R -20.40 | MA100 -20.35 | steps  10397 | ent 0.660 | gnorm 0.034 |     921 st/s | 0.13 h
+upd    74 | ep    740 | batch R -20.10 | MA100 -20.36 | steps  11353 | ent 0.658 | gnorm 0.044 |     864 st/s | 0.14 h
+upd    75 | ep    750 | batch R -20.30 | MA100 -20.42 | steps  10673 | ent 0.659 | gnorm 0.036 |     961 st/s | 0.14 h
+upd    76 | ep    760 | batch R -20.00 | MA100 -20.35 | steps  11332 | ent 0.658 | gnorm 0.036 |    1084 st/s | 0.14 h
+upd    77 | ep    770 | batch R -20.30 | MA100 -20.37 | steps  11159 | ent 0.656 | gnorm 0.031 |    1257 st/s | 0.15 h
+upd    78 | ep    780 | batch R -20.20 | MA100 -20.33 | steps  12063 | ent 0.655 | gnorm 0.032 |    1228 st/s | 0.15 h
+upd    79 | ep    790 | batch R -20.40 | MA100 -20.33 | steps  11261 | ent 0.654 | gnorm 0.042 |    1256 st/s | 0.15 h
+upd    80 | ep    800 | batch R -20.20 | MA100 -20.28 | steps  10846 | ent 0.651 | gnorm 0.040 |     875 st/s | 0.15 h
+upd    81 | ep    810 | batch R -19.90 | MA100 -20.24 | steps  11063 | ent 0.650 | gnorm 0.032 |     835 st/s | 0.16 h
+upd    82 | ep    820 | batch R -19.90 | MA100 -20.17 | steps  11894 | ent 0.647 | gnorm 0.031 |     790 st/s | 0.16 h
+upd    83 | ep    830 | batch R -19.90 | MA100 -20.12 | steps  11196 | ent 0.645 | gnorm 0.043 |     830 st/s | 0.17 h
+upd    84 | ep    840 | batch R -20.00 | MA100 -20.11 | steps  11202 | ent 0.643 | gnorm 0.034 |     856 st/s | 0.17 h
+upd    85 | ep    850 | batch R -20.70 | MA100 -20.15 | steps  11143 | ent 0.640 | gnorm 0.033 |     886 st/s | 0.17 h
+upd    86 | ep    860 | batch R -20.00 | MA100 -20.15 | steps  11943 | ent 0.638 | gnorm 0.029 |     851 st/s | 0.18 h
+upd    87 | ep    870 | batch R -20.10 | MA100 -20.13 | steps  11671 | ent 0.637 | gnorm 0.039 |     903 st/s | 0.18 h
+upd    88 | ep    880 | batch R -19.70 | MA100 -20.08 | steps  11626 | ent 0.637 | gnorm 0.035 |     864 st/s | 0.18 h
+upd    89 | ep    890 | batch R -19.70 | MA100 -20.01 | steps  11486 | ent 0.632 | gnorm 0.042 |     868 st/s | 0.19 h
+signal 15: finishing current step and saving
+done: episodes=890 updates=89 env_steps=956478 elapsed=0.19 h; only actions [2, 3] were used (counts [452197, 504281])
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+resumed from results/pong/none_lr1e-3/checkpoint.pt: episodes=890 updates=89
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+training Pong: baseline=none lr=0.001 num_envs=4 batch_episodes=10
+upd    90 | ep    900 | batch R -20.10 | MA100 -20.00 | steps  11971 | ent 0.628 | gnorm 0.032 |     942 st/s | 0.19 h
+upd    91 | ep    910 | batch R -19.30 | MA100 -19.94 | steps  12238 | ent 0.626 | gnorm 0.037 |     990 st/s | 0.19 h
+upd    92 | ep    920 | batch R -20.50 | MA100 -20.00 | steps  10978 | ent 0.625 | gnorm 0.035 |     928 st/s | 0.20 h
+upd    93 | ep    930 | batch R -20.20 | MA100 -20.03 | steps  11984 | ent 0.622 | gnorm 0.039 |     935 st/s | 0.20 h
+upd    94 | ep    940 | batch R -20.10 | MA100 -20.04 | steps  11600 | ent 0.616 | gnorm 0.041 |     835 st/s | 0.21 h
+upd    95 | ep    950 | batch R -19.90 | MA100 -19.96 | steps  12157 | ent 0.617 | gnorm 0.035 |     889 st/s | 0.21 h
+upd    96 | ep    960 | batch R -20.30 | MA100 -19.99 | steps  11234 | ent 0.608 | gnorm 0.041 |     856 st/s | 0.21 h
+upd    97 | ep    970 | batch R -19.90 | MA100 -19.97 | steps  12759 | ent 0.609 | gnorm 0.037 |     882 st/s | 0.22 h
+upd    98 | ep    980 | batch R -20.60 | MA100 -20.06 | steps  10639 | ent 0.604 | gnorm 0.041 |     841 st/s | 0.22 h
+upd    99 | ep    990 | batch R -20.10 | MA100 -20.10 | steps  11962 | ent 0.596 | gnorm 0.031 |     802 st/s | 0.22 h
+upd   100 | ep   1000 | batch R -20.40 | MA100 -20.13 | steps  11922 | ent 0.594 | gnorm 0.027 |     850 st/s | 0.23 h
+upd   101 | ep   1010 | batch R -20.40 | MA100 -20.24 | steps  11488 | ent 0.593 | gnorm 0.040 |     849 st/s | 0.23 h
+upd   102 | ep   1020 | batch R -20.00 | MA100 -20.19 | steps  11760 | ent 0.584 | gnorm 0.035 |     966 st/s | 0.24 h
+upd   103 | ep   1030 | batch R -19.80 | MA100 -20.15 | steps  12845 | ent 0.581 | gnorm 0.036 |     859 st/s | 0.24 h
+upd   104 | ep   1040 | batch R -20.00 | MA100 -20.14 | steps  11579 | ent 0.580 | gnorm 0.036 |     905 st/s | 0.24 h
+upd   105 | ep   1050 | batch R -19.90 | MA100 -20.14 | steps  12087 | ent 0.572 | gnorm 0.031 |     871 st/s | 0.25 h
+upd   106 | ep   1060 | batch R -20.40 | MA100 -20.15 | steps  12174 | ent 0.570 | gnorm 0.047 |     821 st/s | 0.25 h
+upd   107 | ep   1070 | batch R -20.30 | MA100 -20.19 | steps  11847 | ent 0.565 | gnorm 0.036 |     812 st/s | 0.26 h
+upd   108 | ep   1080 | batch R -19.70 | MA100 -20.10 | steps  12290 | ent 0.565 | gnorm 0.036 |     758 st/s | 0.26 h
+upd   109 | ep   1090 | batch R -20.20 | MA100 -20.11 | steps  11989 | ent 0.560 | gnorm 0.032 |     640 st/s | 0.27 h
+upd   110 | ep   1100 | batch R -20.00 | MA100 -20.07 | steps  11747 | ent 0.558 | gnorm 0.038 |     875 st/s | 0.27 h
+upd   111 | ep   1110 | batch R -20.40 | MA100 -20.07 | steps  12537 | ent 0.555 | gnorm 0.032 |     916 st/s | 0.27 h
+upd   112 | ep   1120 | batch R -19.90 | MA100 -20.06 | steps  12528 | ent 0.559 | gnorm 0.032 |     872 st/s | 0.28 h
+upd   113 | ep   1130 | batch R -20.30 | MA100 -20.11 | steps  11468 | ent 0.556 | gnorm 0.041 |     966 st/s | 0.28 h
+upd   114 | ep   1140 | batch R -20.40 | MA100 -20.15 | steps  12836 | ent 0.557 | gnorm 0.036 |     883 st/s | 0.28 h
+upd   115 | ep   1150 | batch R -18.90 | MA100 -20.05 | steps  13473 | ent 0.560 | gnorm 0.028 |     876 st/s | 0.29 h
+upd   116 | ep   1160 | batch R -20.00 | MA100 -20.01 | steps  13755 | ent 0.551 | gnorm 0.031 |     875 st/s | 0.29 h
+upd   117 | ep   1170 | batch R -19.80 | MA100 -19.96 | steps  13946 | ent 0.549 | gnorm 0.030 |     922 st/s | 0.30 h
+upd   118 | ep   1180 | batch R -19.80 | MA100 -19.97 | steps  13590 | ent 0.552 | gnorm 0.035 |     810 st/s | 0.30 h
+upd   119 | ep   1190 | batch R -19.10 | MA100 -19.86 | steps  13657 | ent 0.554 | gnorm 0.028 |     871 st/s | 0.31 h
+upd   120 | ep   1200 | batch R -19.70 | MA100 -19.83 | steps  12894 | ent 0.551 | gnorm 0.032 |     835 st/s | 0.31 h
+upd   121 | ep   1210 | batch R -19.50 | MA100 -19.74 | steps  13020 | ent 0.550 | gnorm 0.036 |     816 st/s | 0.31 h
+upd   122 | ep   1220 | batch R -19.60 | MA100 -19.71 | steps  13715 | ent 0.547 | gnorm 0.030 |     796 st/s | 0.32 h
+upd   123 | ep   1230 | batch R -19.90 | MA100 -19.67 | steps  13065 | ent 0.542 | gnorm 0.029 |     864 st/s | 0.32 h
+upd   124 | ep   1240 | batch R -19.50 | MA100 -19.58 | steps  13089 | ent 0.548 | gnorm 0.032 |     970 st/s | 0.33 h
+upd   125 | ep   1250 | batch R -19.60 | MA100 -19.65 | steps  13970 | ent 0.545 | gnorm 0.031 |     950 st/s | 0.33 h
+upd   126 | ep   1260 | batch R -19.50 | MA100 -19.60 | steps  13086 | ent 0.544 | gnorm 0.048 |     929 st/s | 0.34 h
+upd   127 | ep   1270 | batch R -19.40 | MA100 -19.56 | steps  14015 | ent 0.537 | gnorm 0.029 |     984 st/s | 0.34 h
+upd   128 | ep   1280 | batch R -19.50 | MA100 -19.53 | steps  14059 | ent 0.533 | gnorm 0.033 |    1035 st/s | 0.34 h
+upd   129 | ep   1290 | batch R -20.00 | MA100 -19.62 | steps  13476 | ent 0.532 | gnorm 0.038 |    1059 st/s | 0.35 h
+upd   130 | ep   1300 | batch R -19.60 | MA100 -19.61 | steps  13286 | ent 0.536 | gnorm 0.031 |    1023 st/s | 0.35 h
+upd   131 | ep   1310 | batch R -19.10 | MA100 -19.57 | steps  13881 | ent 0.531 | gnorm 0.033 |     957 st/s | 0.35 h
+upd   132 | ep   1320 | batch R -19.60 | MA100 -19.57 | steps  13423 | ent 0.536 | gnorm 0.035 |     929 st/s | 0.36 h
+upd   133 | ep   1330 | batch R -19.90 | MA100 -19.57 | steps  13923 | ent 0.531 | gnorm 0.030 |     979 st/s | 0.36 h
+upd   134 | ep   1340 | batch R -18.90 | MA100 -19.51 | steps  15120 | ent 0.533 | gnorm 0.026 |     960 st/s | 0.37 h
+upd   135 | ep   1350 | batch R -20.00 | MA100 -19.55 | steps  13642 | ent 0.529 | gnorm 0.029 |    1125 st/s | 0.37 h
+upd   136 | ep   1360 | batch R -19.20 | MA100 -19.52 | steps  13858 | ent 0.527 | gnorm 0.036 |    1028 st/s | 0.37 h
+upd   137 | ep   1370 | batch R -18.20 | MA100 -19.40 | steps  15564 | ent 0.529 | gnorm 0.027 |    1198 st/s | 0.38 h
+upd   138 | ep   1380 | batch R -18.90 | MA100 -19.34 | steps  14264 | ent 0.521 | gnorm 0.030 |    1121 st/s | 0.38 h
+upd   139 | ep   1390 | batch R -19.80 | MA100 -19.32 | steps  12680 | ent 0.523 | gnorm 0.035 |    1131 st/s | 0.38 h
+upd   140 | ep   1400 | batch R -19.90 | MA100 -19.35 | steps  13562 | ent 0.515 | gnorm 0.041 |    1032 st/s | 0.39 h
+upd   141 | ep   1410 | batch R -18.70 | MA100 -19.31 | steps  13787 | ent 0.523 | gnorm 0.033 |    1500 st/s | 0.39 h
+upd   142 | ep   1420 | batch R -18.80 | MA100 -19.23 | steps  14612 | ent 0.522 | gnorm 0.029 |    2028 st/s | 0.39 h
+upd   143 | ep   1430 | batch R -20.30 | MA100 -19.27 | steps  12449 | ent 0.521 | gnorm 0.045 |    2063 st/s | 0.39 h
+upd   144 | ep   1440 | batch R -19.50 | MA100 -19.33 | steps  14305 | ent 0.515 | gnorm 0.028 |    2110 st/s | 0.40 h
+upd   145 | ep   1450 | batch R -19.10 | MA100 -19.24 | steps  14626 | ent 0.510 | gnorm 0.026 |    1921 st/s | 0.40 h
+upd   146 | ep   1460 | batch R -19.80 | MA100 -19.30 | steps  13351 | ent 0.515 | gnorm 0.045 |    2087 st/s | 0.40 h
+upd   147 | ep   1470 | batch R -18.90 | MA100 -19.37 | steps  15053 | ent 0.511 | gnorm 0.026 |    1989 st/s | 0.40 h
+upd   148 | ep   1480 | batch R -19.70 | MA100 -19.45 | steps  14176 | ent 0.505 | gnorm 0.033 |    2023 st/s | 0.40 h
+upd   149 | ep   1490 | batch R -19.40 | MA100 -19.41 | steps  15011 | ent 0.502 | gnorm 0.028 |    1793 st/s | 0.41 h
+upd   150 | ep   1500 | batch R -19.40 | MA100 -19.36 | steps  13622 | ent 0.504 | gnorm 0.031 |    2060 st/s | 0.41 h
+upd   151 | ep   1510 | batch R -19.00 | MA100 -19.39 | steps  15796 | ent 0.506 | gnorm 0.028 |    1574 st/s | 0.41 h
+upd   152 | ep   1520 | batch R -19.20 | MA100 -19.43 | steps  15263 | ent 0.499 | gnorm 0.026 |    1720 st/s | 0.41 h
+upd   153 | ep   1530 | batch R -18.70 | MA100 -19.27 | steps  16230 | ent 0.499 | gnorm 0.024 |    1623 st/s | 0.42 h
+upd   154 | ep   1540 | batch R -19.40 | MA100 -19.26 | steps  15375 | ent 0.491 | gnorm 0.029 |    1880 st/s | 0.42 h
+upd   155 | ep   1550 | batch R -19.50 | MA100 -19.30 | steps  15205 | ent 0.493 | gnorm 0.028 |    1736 st/s | 0.42 h
+upd   156 | ep   1560 | batch R -19.10 | MA100 -19.23 | steps  14816 | ent 0.493 | gnorm 0.026 |    1483 st/s | 0.42 h
+upd   157 | ep   1570 | batch R -18.80 | MA100 -19.22 | steps  14196 | ent 0.489 | gnorm 0.029 |    1786 st/s | 0.43 h
+upd   158 | ep   1580 | batch R -18.30 | MA100 -19.08 | steps  15999 | ent 0.486 | gnorm 0.033 |    1755 st/s | 0.43 h
+upd   159 | ep   1590 | batch R -19.20 | MA100 -19.06 | steps  14913 | ent 0.490 | gnorm 0.026 |    1685 st/s | 0.43 h
+upd   160 | ep   1600 | batch R -19.70 | MA100 -19.09 | steps  15531 | ent 0.484 | gnorm 0.026 |    1965 st/s | 0.43 h
+upd   161 | ep   1610 | batch R -18.90 | MA100 -19.08 | steps  15060 | ent 0.488 | gnorm 0.028 |    2092 st/s | 0.44 h
+upd   162 | ep   1620 | batch R -19.30 | MA100 -19.09 | steps  15966 | ent 0.483 | gnorm 0.027 |    1899 st/s | 0.44 h
+upd   163 | ep   1630 | batch R -19.20 | MA100 -19.14 | steps  15573 | ent 0.480 | gnorm 0.027 |    1818 st/s | 0.44 h
+upd   164 | ep   1640 | batch R -18.90 | MA100 -19.09 | steps  14817 | ent 0.484 | gnorm 0.027 |    2035 st/s | 0.44 h
+upd   165 | ep   1650 | batch R -19.40 | MA100 -19.08 | steps  15027 | ent 0.481 | gnorm 0.030 |    2054 st/s | 0.44 h
+upd   166 | ep   1660 | batch R -19.40 | MA100 -19.11 | steps  15582 | ent 0.477 | gnorm 0.028 |    1833 st/s | 0.45 h
+upd   167 | ep   1670 | batch R -19.10 | MA100 -19.14 | steps  15968 | ent 0.480 | gnorm 0.032 |    1877 st/s | 0.45 h
+upd   168 | ep   1680 | batch R -18.40 | MA100 -19.15 | steps  15313 | ent 0.479 | gnorm 0.027 |    1719 st/s | 0.45 h
+upd   169 | ep   1690 | batch R -19.00 | MA100 -19.13 | steps  15948 | ent 0.478 | gnorm 0.028 |    1744 st/s | 0.45 h
+upd   170 | ep   1700 | batch R -18.90 | MA100 -19.05 | steps  16208 | ent 0.478 | gnorm 0.027 |    1420 st/s | 0.46 h
+upd   171 | ep   1710 | batch R -19.50 | MA100 -19.11 | steps  15085 | ent 0.476 | gnorm 0.036 |    1634 st/s | 0.46 h
+upd   172 | ep   1720 | batch R -19.00 | MA100 -19.08 | steps  15651 | ent 0.475 | gnorm 0.030 |    1609 st/s | 0.46 h
+upd   173 | ep   1730 | batch R -18.70 | MA100 -19.03 | steps  15504 | ent 0.471 | gnorm 0.029 |    1545 st/s | 0.46 h
+upd   174 | ep   1740 | batch R -19.70 | MA100 -19.11 | steps  16762 | ent 0.467 | gnorm 0.026 |    1661 st/s | 0.47 h
+upd   175 | ep   1750 | batch R -19.60 | MA100 -19.13 | steps  16240 | ent 0.466 | gnorm 0.038 |    1145 st/s | 0.47 h
+upd   176 | ep   1760 | batch R -19.20 | MA100 -19.11 | steps  16187 | ent 0.464 | gnorm 0.028 |    1108 st/s | 0.48 h
+upd   177 | ep   1770 | batch R -19.20 | MA100 -19.12 | steps  16357 | ent 0.463 | gnorm 0.026 |    1260 st/s | 0.48 h
+upd   178 | ep   1780 | batch R -19.20 | MA100 -19.20 | steps  16243 | ent 0.462 | gnorm 0.027 |    1183 st/s | 0.48 h
+upd   179 | ep   1790 | batch R -17.90 | MA100 -19.09 | steps  17606 | ent 0.458 | gnorm 0.024 |    1672 st/s | 0.49 h
+upd   180 | ep   1800 | batch R -18.50 | MA100 -19.05 | steps  16792 | ent 0.457 | gnorm 0.027 |    1559 st/s | 0.49 h
+upd   181 | ep   1810 | batch R -19.00 | MA100 -19.00 | steps  17239 | ent 0.458 | gnorm 0.024 |    1808 st/s | 0.49 h
+upd   182 | ep   1820 | batch R -18.70 | MA100 -18.97 | steps  15884 | ent 0.454 | gnorm 0.026 |    1701 st/s | 0.49 h
+upd   183 | ep   1830 | batch R -18.90 | MA100 -18.99 | steps  16051 | ent 0.458 | gnorm 0.025 |    1487 st/s | 0.50 h
+upd   184 | ep   1840 | batch R -19.30 | MA100 -18.95 | steps  16644 | ent 0.454 | gnorm 0.027 |    1605 st/s | 0.50 h
+upd   185 | ep   1850 | batch R -19.50 | MA100 -18.94 | steps  15726 | ent 0.453 | gnorm 0.026 |    1677 st/s | 0.50 h
+upd   186 | ep   1860 | batch R -18.30 | MA100 -18.85 | steps  16314 | ent 0.451 | gnorm 0.024 |    1611 st/s | 0.51 h
+upd   187 | ep   1870 | batch R -19.30 | MA100 -18.86 | steps  15785 | ent 0.449 | gnorm 0.030 |    1770 st/s | 0.51 h
+upd   188 | ep   1880 | batch R -18.60 | MA100 -18.80 | steps  16105 | ent 0.450 | gnorm 0.031 |    1798 st/s | 0.51 h
+upd   189 | ep   1890 | batch R -18.10 | MA100 -18.82 | steps  16864 | ent 0.449 | gnorm 0.029 |    1701 st/s | 0.51 h
+upd   190 | ep   1900 | batch R -19.30 | MA100 -18.90 | steps  16457 | ent 0.451 | gnorm 0.027 |    1853 st/s | 0.52 h
+upd   191 | ep   1910 | batch R -18.90 | MA100 -18.89 | steps  16790 | ent 0.445 | gnorm 0.029 |    1603 st/s | 0.52 h

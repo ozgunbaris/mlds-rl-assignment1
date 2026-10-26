@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.pt.tmp
+results/**/*.npz
+report/*.aux
+report/*.log
+report/*.out
+.DS_Store
+results/pong/*/checkpoint.pt
+results/pong/*/checkpoint.pt.tmp

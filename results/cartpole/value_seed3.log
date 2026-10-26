@@ -1,0 +1,6 @@
+ep   500 | reward  500.0 | MA100  500.0 | entropy 0.451 |   45.8s
+ep  1000 | reward  500.0 | MA100  500.0 | entropy 0.457 |   95.8s
+ep  1500 | reward  340.0 | MA100  352.7 | entropy 0.323 |  159.2s
+ep  2000 | reward  500.0 | MA100  461.6 | entropy 0.280 |  202.2s
+eval (sampled actions): {"episodes": 500, "mean": 500.0, "std": 0.0, "min": 500.0, "max": 500.0, "mode": "sampled"}
+eval (greedy actions): {"episodes": 500, "mean": 500.0, "std": 0.0, "min": 500.0, "max": 500.0, "mode": "greedy"}

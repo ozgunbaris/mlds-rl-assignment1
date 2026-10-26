@@ -1,0 +1,92 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+training Pong: baseline=value lr=0.0003 num_envs=4 batch_episodes=10
+upd     1 | ep     10 | batch R -20.60 | MA100 -20.60 | steps   9655 | ent 0.692 | gnorm 0.033 |     891 st/s | 0.00 h
+upd     2 | ep     20 | batch R -20.40 | MA100 -20.50 | steps   9847 | ent 0.692 | gnorm 0.026 |     817 st/s | 0.01 h
+upd     3 | ep     30 | batch R -20.30 | MA100 -20.43 | steps  10377 | ent 0.692 | gnorm 0.018 |     789 st/s | 0.01 h
+upd     4 | ep     40 | batch R -20.30 | MA100 -20.40 | steps  10486 | ent 0.692 | gnorm 0.016 |     843 st/s | 0.01 h
+upd     5 | ep     50 | batch R -20.40 | MA100 -20.40 | steps  10464 | ent 0.692 | gnorm 0.013 |     844 st/s | 0.02 h
+upd     6 | ep     60 | batch R -20.50 | MA100 -20.42 | steps  10729 | ent 0.692 | gnorm 0.012 |     922 st/s | 0.02 h
+upd     7 | ep     70 | batch R -20.60 | MA100 -20.44 | steps  10269 | ent 0.692 | gnorm 0.012 |     831 st/s | 0.02 h
+upd     8 | ep     80 | batch R -20.10 | MA100 -20.40 | steps   9772 | ent 0.692 | gnorm 0.016 |     893 st/s | 0.03 h
+upd     9 | ep     90 | batch R -20.50 | MA100 -20.41 | steps   9453 | ent 0.692 | gnorm 0.013 |     911 st/s | 0.03 h
+upd    10 | ep    100 | batch R -20.40 | MA100 -20.41 | steps  10397 | ent 0.692 | gnorm 0.014 |     822 st/s | 0.03 h
+signal 15: finishing current step and saving
+done: episodes=103 updates=10 env_steps=107429 elapsed=0.03 h; only actions [2, 3] were used (counts [51584, 55845])
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+resumed from results/pong/value_lr3e-4/checkpoint.pt: episodes=103 updates=10
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+training Pong: baseline=value lr=0.0003 num_envs=4 batch_episodes=10
+upd    11 | ep    113 | batch R -20.70 | MA100 -20.42 | steps   9867 | ent 0.692 | gnorm 0.011 |     855 st/s | 0.04 h
+upd    12 | ep    123 | batch R -20.00 | MA100 -20.38 | steps  10661 | ent 0.692 | gnorm 0.012 |     913 st/s | 0.04 h
+upd    13 | ep    133 | batch R -20.20 | MA100 -20.41 | steps  10584 | ent 0.692 | gnorm 0.013 |     828 st/s | 0.05 h
+upd    14 | ep    143 | batch R -20.30 | MA100 -20.37 | steps  10553 | ent 0.692 | gnorm 0.013 |     846 st/s | 0.05 h
+upd    15 | ep    153 | batch R -20.90 | MA100 -20.43 | steps   9674 | ent 0.692 | gnorm 0.011 |     779 st/s | 0.05 h
+upd    16 | ep    163 | batch R -20.40 | MA100 -20.43 | steps   9915 | ent 0.692 | gnorm 0.014 |     824 st/s | 0.06 h
+upd    17 | ep    173 | batch R -20.00 | MA100 -20.38 | steps  10297 | ent 0.692 | gnorm 0.017 |     739 st/s | 0.06 h
+upd    18 | ep    183 | batch R -20.30 | MA100 -20.40 | steps  10730 | ent 0.692 | gnorm 0.010 |     804 st/s | 0.06 h
+upd    19 | ep    193 | batch R -20.40 | MA100 -20.40 | steps  10768 | ent 0.692 | gnorm 0.011 |     758 st/s | 0.07 h
+upd    20 | ep    203 | batch R -20.10 | MA100 -20.33 | steps  10390 | ent 0.692 | gnorm 0.016 |     736 st/s | 0.07 h
+upd    21 | ep    213 | batch R -20.80 | MA100 -20.34 | steps  10680 | ent 0.691 | gnorm 0.013 |     792 st/s | 0.07 h
+upd    22 | ep    223 | batch R -20.20 | MA100 -20.36 | steps  10763 | ent 0.691 | gnorm 0.012 |     769 st/s | 0.08 h
+upd    23 | ep    233 | batch R -20.50 | MA100 -20.39 | steps  10117 | ent 0.691 | gnorm 0.012 |     817 st/s | 0.08 h
+upd    24 | ep    243 | batch R -20.40 | MA100 -20.40 | steps  10393 | ent 0.691 | gnorm 0.015 |     806 st/s | 0.09 h
+upd    25 | ep    253 | batch R -20.60 | MA100 -20.37 | steps  10141 | ent 0.691 | gnorm 0.011 |     775 st/s | 0.09 h
+upd    26 | ep    263 | batch R -20.30 | MA100 -20.36 | steps  10311 | ent 0.691 | gnorm 0.013 |     858 st/s | 0.09 h
+upd    27 | ep    273 | batch R -20.00 | MA100 -20.36 | steps  10415 | ent 0.691 | gnorm 0.014 |     745 st/s | 0.10 h
+upd    28 | ep    283 | batch R -20.40 | MA100 -20.37 | steps  10285 | ent 0.691 | gnorm 0.014 |     769 st/s | 0.10 h
+upd    29 | ep    293 | batch R -20.30 | MA100 -20.36 | steps  10061 | ent 0.691 | gnorm 0.011 |     725 st/s | 0.10 h
+upd    30 | ep    303 | batch R -20.40 | MA100 -20.39 | steps  10648 | ent 0.691 | gnorm 0.016 |     645 st/s | 0.11 h
+upd    31 | ep    313 | batch R -19.70 | MA100 -20.28 | steps  10936 | ent 0.691 | gnorm 0.015 |     607 st/s | 0.11 h
+upd    32 | ep    323 | batch R -20.60 | MA100 -20.32 | steps  11117 | ent 0.691 | gnorm 0.017 |     829 st/s | 0.12 h
+upd    33 | ep    333 | batch R -20.50 | MA100 -20.32 | steps  10735 | ent 0.691 | gnorm 0.009 |     786 st/s | 0.12 h
+upd    34 | ep    343 | batch R -20.80 | MA100 -20.36 | steps  10796 | ent 0.691 | gnorm 0.011 |     780 st/s | 0.12 h
+upd    35 | ep    353 | batch R -20.30 | MA100 -20.33 | steps  10799 | ent 0.690 | gnorm 0.015 |     839 st/s | 0.13 h
+upd    36 | ep    363 | batch R -20.40 | MA100 -20.34 | steps   9978 | ent 0.691 | gnorm 0.010 |     807 st/s | 0.13 h
+upd    37 | ep    373 | batch R -20.30 | MA100 -20.37 | steps  10313 | ent 0.690 | gnorm 0.013 |     774 st/s | 0.14 h
+upd    38 | ep    383 | batch R -20.10 | MA100 -20.34 | steps  11287 | ent 0.690 | gnorm 0.014 |     792 st/s | 0.14 h
+upd    39 | ep    393 | batch R -20.20 | MA100 -20.33 | steps  11677 | ent 0.690 | gnorm 0.010 |     850 st/s | 0.14 h
+upd    40 | ep    403 | batch R -20.50 | MA100 -20.34 | steps  10175 | ent 0.690 | gnorm 0.014 |     762 st/s | 0.15 h
+upd    41 | ep    413 | batch R -20.30 | MA100 -20.40 | steps  10788 | ent 0.690 | gnorm 0.011 |     751 st/s | 0.15 h
+upd    42 | ep    423 | batch R -20.70 | MA100 -20.41 | steps  10839 | ent 0.690 | gnorm 0.009 |     806 st/s | 0.16 h
+upd    43 | ep    433 | batch R -20.20 | MA100 -20.38 | steps  10167 | ent 0.690 | gnorm 0.013 |     751 st/s | 0.16 h
+upd    44 | ep    443 | batch R -19.80 | MA100 -20.28 | steps  10911 | ent 0.690 | gnorm 0.011 |     719 st/s | 0.16 h
+upd    45 | ep    453 | batch R -20.60 | MA100 -20.31 | steps   9967 | ent 0.690 | gnorm 0.013 |     701 st/s | 0.17 h
+upd    46 | ep    463 | batch R -20.40 | MA100 -20.31 | steps  10154 | ent 0.690 | gnorm 0.011 |     779 st/s | 0.17 h
+upd    47 | ep    473 | batch R -20.70 | MA100 -20.35 | steps   9682 | ent 0.690 | gnorm 0.010 |     800 st/s | 0.17 h
+upd    48 | ep    483 | batch R -20.30 | MA100 -20.37 | steps  10854 | ent 0.690 | gnorm 0.011 |     902 st/s | 0.18 h
+upd    49 | ep    493 | batch R -20.50 | MA100 -20.40 | steps   9836 | ent 0.690 | gnorm 0.012 |     819 st/s | 0.18 h
+upd    50 | ep    503 | batch R -20.20 | MA100 -20.37 | steps  10763 | ent 0.690 | gnorm 0.014 |     850 st/s | 0.18 h
+upd    51 | ep    513 | batch R -20.30 | MA100 -20.37 | steps  11029 | ent 0.689 | gnorm 0.015 |     871 st/s | 0.19 h
+upd    52 | ep    523 | batch R -20.10 | MA100 -20.31 | steps  11537 | ent 0.690 | gnorm 0.011 |     957 st/s | 0.19 h
+upd    53 | ep    533 | batch R -20.60 | MA100 -20.35 | steps  10507 | ent 0.689 | gnorm 0.011 |     974 st/s | 0.19 h
+upd    54 | ep    543 | batch R -19.80 | MA100 -20.35 | steps  10855 | ent 0.689 | gnorm 0.014 |     887 st/s | 0.20 h
+upd    55 | ep    553 | batch R -20.00 | MA100 -20.29 | steps  11142 | ent 0.689 | gnorm 0.010 |     890 st/s | 0.20 h
+upd    56 | ep    563 | batch R -20.20 | MA100 -20.27 | steps  10538 | ent 0.689 | gnorm 0.011 |     797 st/s | 0.20 h
+upd    57 | ep    573 | batch R -20.80 | MA100 -20.28 | steps   9892 | ent 0.689 | gnorm 0.014 |     917 st/s | 0.21 h
+upd    58 | ep    583 | batch R -20.70 | MA100 -20.32 | steps  10419 | ent 0.689 | gnorm 0.012 |     875 st/s | 0.21 h
+upd    59 | ep    593 | batch R -20.30 | MA100 -20.30 | steps  10856 | ent 0.689 | gnorm 0.012 |     840 st/s | 0.21 h
+upd    60 | ep    603 | batch R -20.50 | MA100 -20.33 | steps  11089 | ent 0.689 | gnorm 0.011 |    1039 st/s | 0.22 h
+upd    61 | ep    613 | batch R -20.20 | MA100 -20.32 | steps  11136 | ent 0.689 | gnorm 0.013 |     869 st/s | 0.22 h
+upd    62 | ep    623 | batch R -20.50 | MA100 -20.36 | steps  10425 | ent 0.689 | gnorm 0.016 |    1015 st/s | 0.22 h
+upd    63 | ep    633 | batch R -20.40 | MA100 -20.34 | steps  11671 | ent 0.688 | gnorm 0.014 |    1092 st/s | 0.23 h
+upd    64 | ep    643 | batch R -20.50 | MA100 -20.41 | steps  10428 | ent 0.688 | gnorm 0.013 |     947 st/s | 0.23 h
+upd    65 | ep    653 | batch R -20.20 | MA100 -20.43 | steps  11560 | ent 0.689 | gnorm 0.014 |     981 st/s | 0.23 h
+signal 15: finishing current step and saving
+done: episodes=660 updates=65 env_steps=699752 elapsed=0.24 h; only actions [2, 3] were used (counts [333809, 365943])

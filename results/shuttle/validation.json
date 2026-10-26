@@ -1,0 +1,244 @@
+{
+  "transition_rows_sum_to_one": true,
+  "mass_at_cap_from_s200_wait": 1.0,
+  "max_abs_diff_enum_vi": 3.0772753234487027e-09,
+  "max_abs_diff_vi_pi": 1.864464138634503e-09,
+  "policies_identical": true,
+  "threshold": 13,
+  "monotone": true,
+  "horizon_errors": {
+    "1": 3421.5864771820256,
+    "2": 3041.5864771820256,
+    "5": 2011.8339771820256,
+    "10": 917.0184338999243,
+    "20": 243.63132397229174,
+    "50": 52.249118465989795,
+    "100": 4.020300227412008,
+    "150": 0.3093418998573725,
+    "200": 0.023802303117008705,
+    "300": 0.00014092037918089773,
+    "500": 3.0772753234487027e-09
+  },
+  "T1_equals_min_immediate_cost": true,
+  "threshold_enumeration": {
+    "best_by_V0": 13,
+    "best_by_mean_V": 13,
+    "V0_at_best": 576.6701677662195,
+    "V0_optimal": 576.6701677662195,
+    "V0_never_dispatch": 2203.913256096553,
+    "V0_dispatch_when_full_theta15": 597.3559752698382
+  },
+  "monte_carlo": {
+    "0": {
+      "V": 576.6701677662195,
+      "mc_mean": 576.7781797684119,
+      "mc_se": 0.2189403857940336,
+      "z": 0.49333978197142225
+    },
+    "13": {
+      "V": 676.6701677662194,
+      "mc_mean": 676.5443310093646,
+      "mc_se": 0.22141087481991595,
+      "z": -0.5683404528218083
+    },
+    "50": {
+      "V": 1001.5277317459535,
+      "mc_mean": 1001.6280273604642,
+      "mc_se": 0.22045529619037624,
+      "z": 0.4549476299454863
+    },
+    "100": {
+      "V": 1709.042540933824,
+      "mc_mean": 1709.2857997154892,
+      "mc_se": 0.30868434580278387,
+      "z": 0.7880502687383005
+    },
+    "200": {
+      "V": 3821.5864771838897,
+      "mc_mean": 3822.365080111508,
+      "mc_se": 0.531400466949266,
+      "z": 1.4651905221093018
+    }
+  },
+  "sensitivity": {
+    "cf": {
+      "25": 8,
+      "50": 11,
+      "100": 13,
+      "200": 14,
+      "400": 15,
+      "800": 201
+    },
+    "ch": {
+      "0.5": 15,
+      "1": 14,
+      "2": 13,
+      "4": 11,
+      "8": 8,
+      "16": 5
+    },
+    "K": {
+      "5": 5,
+      "10": 9,
+      "15": 13,
+      "20": 16,
+      "30": 17,
+      "50": 17
+    },
+    "gamma": {
+      "0.0": 201,
+      "0.5": 201,
+      "0.8": 14,
+      "0.9": 13,
+      "0.95": 13,
+      "0.99": 13
+    }
+  },
+  "deterministic": {
+    "threshold": 13,
+    "V0_solver": 569.7530187138844,
+    "V0_closed_form": 569.7530187138842,
+    "cycle_states": [
+      3,
+      6,
+      9,
+      12,
+      15
+    ]
+  },
+  "edge_s0_gap_equals_cf": 100.0,
+  "cap_effect_max_abs_diff_s_le_100": 2.2737367544323206e-13,
+  "cap_effect_max_abs_diff_s_le_200": 4.547473508864641e-13,
+  "cap_policy_same_s_le_200": true,
+  "partially_full_dispatch_states": [
+    13,
+    14
+  ],
+  "trace_first_steps": [
+    {
+      "t": 0,
+      "state": 0,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 0,
+      "cost": 0.0,
+      "arrivals": 3,
+      "next_state": 3
+    },
+    {
+      "t": 1,
+      "state": 3,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 3,
+      "cost": 6.0,
+      "arrivals": 5,
+      "next_state": 8
+    },
+    {
+      "t": 2,
+      "state": 8,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 8,
+      "cost": 16.0,
+      "arrivals": 1,
+      "next_state": 9
+    },
+    {
+      "t": 3,
+      "state": 9,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 9,
+      "cost": 18.0,
+      "arrivals": 5,
+      "next_state": 14
+    },
+    {
+      "t": 4,
+      "state": 14,
+      "action": 1,
+      "boarded": 14,
+      "left_waiting": 0,
+      "cost": 100.0,
+      "arrivals": 2,
+      "next_state": 2
+    },
+    {
+      "t": 5,
+      "state": 2,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 2,
+      "cost": 4.0,
+      "arrivals": 3,
+      "next_state": 5
+    },
+    {
+      "t": 6,
+      "state": 5,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 5,
+      "cost": 10.0,
+      "arrivals": 5,
+      "next_state": 10
+    },
+    {
+      "t": 7,
+      "state": 10,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 10,
+      "cost": 20.0,
+      "arrivals": 3,
+      "next_state": 13
+    },
+    {
+      "t": 8,
+      "state": 13,
+      "action": 1,
+      "boarded": 13,
+      "left_waiting": 0,
+      "cost": 100.0,
+      "arrivals": 3,
+      "next_state": 3
+    },
+    {
+      "t": 9,
+      "state": 3,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 3,
+      "cost": 6.0,
+      "arrivals": 1,
+      "next_state": 4
+    },
+    {
+      "t": 10,
+      "state": 4,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 4,
+      "cost": 8.0,
+      "arrivals": 4,
+      "next_state": 8
+    },
+    {
+      "t": 11,
+      "state": 8,
+      "action": 0,
+      "boarded": 0,
+      "left_waiting": 8,
+      "cost": 16.0,
+      "arrivals": 3,
+      "next_state": 11
+    }
+  ],
+  "value_nondecreasing": true,
+  "value_increments_min_max": [
+    -1.1368683772161603e-13,
+    24.851888814168433
+  ]
+}

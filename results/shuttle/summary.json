@@ -1,0 +1,62 @@
+{
+  "parameters": {
+    "K": 15,
+    "cf": 100,
+    "ch": 2,
+    "arrivals": "Uniform{1,...,5}",
+    "max_customers": 200,
+    "gamma": 0.95,
+    "T_enumeration": 500
+  },
+  "threshold_policy": {
+    "dispatch_iff_s_ge": 13,
+    "is_monotone_threshold": true
+  },
+  "value_iteration": {
+    "sweeps": 519,
+    "final_residual": 9.913492249324918e-11,
+    "error_bound_gamma_over_1_minus_gamma_times_residual": 1.8835635273717327e-09
+  },
+  "policy_iteration": {
+    "iterations": 6,
+    "thresholds_per_iteration": [
+      201,
+      3,
+      26,
+      7,
+      14,
+      13,
+      13
+    ]
+  },
+  "agreement": {
+    "max_abs_V_enum0_minus_V_vi": 3.0772753234487027e-09,
+    "max_abs_V_vi_minus_V_pi": 1.864464138634503e-09,
+    "policies_identical": true
+  },
+  "values": {
+    "0": 576.6701677662195,
+    "5": 625.4396580837516,
+    "10": 660.1230257951527,
+    "12": 672.8921633807238,
+    "13": 676.6701677662194,
+    "14": 676.6701677662193,
+    "15": 676.6701677662193,
+    "20": 725.4396580837515,
+    "30": 801.6701677662194,
+    "50": 1001.5277317459535,
+    "100": 1709.042540933824,
+    "150": 2665.0418530651123,
+    "200": 3821.5864771838897
+  },
+  "enumeration_stage_policies_equal_to_stationary": {
+    "0": true,
+    "100": true,
+    "250": true,
+    "400": true,
+    "450": true,
+    "480": true,
+    "495": false,
+    "499": false
+  }
+}
