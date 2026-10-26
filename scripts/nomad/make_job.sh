@@ -6,6 +6,9 @@ set -e
 cd "$(dirname "$0")/../.."
 REV=$(git rev-parse --short HEAD 2>/dev/null || echo nogit)
 HOURS=${HOURS:-4.0}
+BASELINES=${BASELINES:-"none value"}
+CORES=${CORES:-24}
+MEMORY=${MEMORY:-32768}
 tar -czf /tmp/pong_code.tar.gz policy_gradient/*.py shuttle_mdp/*.py tests/*.py viz.py requirements.txt
 B64=$(base64 < /tmp/pong_code.tar.gz)
 cat > scripts/nomad/pong-reinforce.nomad <<EOF
@@ -16,6 +19,7 @@ job "pong-reinforce" {
   meta {
     revision = "$REV"
     hours    = "$HOURS"
+    baselines = "$BASELINES"
   }
 
   constraint {
@@ -58,6 +62,7 @@ job "pong-reinforce" {
         OPENBLAS_NUM_THREADS = "1"
         PYTHONUNBUFFERED     = "1"
         HOURS                = "$HOURS"
+        BASELINES            = "$BASELINES"
       }
 
       template {
@@ -75,11 +80,11 @@ PAYLOAD_EOF
       }
 
       resources {
-        cores  = 24
-        memory = 32768
+        cores  = $CORES
+        memory = $MEMORY
       }
     }
   }
 }
 EOF
-echo "wrote scripts/nomad/pong-reinforce.nomad (revision $REV, $(wc -c < scripts/nomad/pong-reinforce.nomad) bytes)"
+echo "wrote scripts/nomad/pong-reinforce.nomad (revision $REV, hours $HOURS, baselines '$BASELINES', cores $CORES, memory $MEMORY MB)"

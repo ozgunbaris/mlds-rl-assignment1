@@ -21,7 +21,7 @@ pack() {
 trap pack EXIT
 
 CORES=$(python3 -c "import os; print(len(os.sched_getaffinity(0)))")
-echo "BEGIN $(date -u +%Y-%m-%dT%H:%M:%SZ) node=$NODE_NAME cores=$CORES hours=$HOURS memory.max=$(cat /sys/fs/cgroup/memory.max 2>/dev/null)"
+echo "BEGIN $(date -u +%Y-%m-%dT%H:%M:%SZ) node=$NODE_NAME cores=$CORES hours=$HOURS baselines=$BASELINES memory.max=$(cat /sys/fs/cgroup/memory.max 2>/dev/null)"
 base64 -d /local/code.b64 > $BASE/code.tar.gz
 tar -xzf $BASE/code.tar.gz -C $WORK
 cd $WORK
@@ -34,7 +34,7 @@ python3 -m pytest -q tests/test_policy_gradient.py > $LOGS/pytest.log 2>&1
 echo "pytest rc=$? $(tail -n 1 $LOGS/pytest.log)"
 
 PIDS=""
-for B in none value; do
+for B in $BASELINES; do
   for S in 0 1 2 3 4; do
     D=results/pong/cluster_"$B"_seed"$S"
     mkdir -p $D
@@ -51,7 +51,7 @@ while true; do
   done
   if [ $alive -eq 0 ]; then break; fi
   sleep 600
-  for B in none value; do
+  for B in $BASELINES; do
     for S in 0 1 2 3 4; do
       D=results/pong/cluster_"$B"_seed"$S"
       echo "$D: $(grep '^upd' $D/train.log | tail -n 1)"
@@ -62,7 +62,7 @@ done
 echo "TRAINING_DONE $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 for MODE in sampled greedy; do
-  for B in none value; do
+  for B in $BASELINES; do
     for S in 0 1 2 3 4; do
       D=results/pong/cluster_"$B"_seed"$S"
       if [ $MODE = greedy ]; then G=--greedy; else G=""; fi
@@ -72,7 +72,7 @@ for MODE in sampled greedy; do
   wait
   echo "EVAL_$MODE done $(date -u +%H:%M:%S)"
 done
-for B in none value; do
+for B in $BASELINES; do
   for S in 0 1 2 3 4; do
     D=results/pong/cluster_"$B"_seed"$S"
     python3 -m policy_gradient.export_weights $D/checkpoint.pt $D/policy_weights.pt
