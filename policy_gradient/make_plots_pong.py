@@ -4,6 +4,7 @@
 """
 import argparse
 import csv
+import glob
 import json
 import os
 from collections import OrderedDict
@@ -27,6 +28,8 @@ def main():
     p.add_argument("--out", default="results/pong/figures")
     p.add_argument("--window", type=int, default=100)
     p.add_argument("--diag-runs", type=int, default=None, help="only the first N runs appear in the entropy/advantage plots")
+    p.add_argument("--group", action="append", default=[], metavar="LABEL=GLOB",
+                   help="seed group, e.g. 'no baseline=results/pong/cluster_none_seed*'; drawn as mean +- std over seeds")
     args = p.parse_args()
     os.makedirs(args.out, exist_ok=True)
     labels = args.labels or [os.path.basename(r.rstrip("/")) for r in args.runs]
@@ -92,6 +95,35 @@ def main():
         ax.legend()
         fig.savefig(os.path.join(args.out, fname))
         plt.close(fig)
+    # seed groups: mean +- std over seeds of the moving average, plus a summary per group
+    if args.group:
+        gcurves = OrderedDict()
+        gsummary = {}
+        for spec in args.group:
+            label, pattern = spec.split("=", 1)
+            dirs = sorted(glob.glob(pattern))
+            rew = [np.array([float(r["reward"]) for r in read_csv(os.path.join(d, "episodes.csv"))]) for d in dirs]
+            rew = [r for r in rew if len(r) >= args.window]
+            if not rew:
+                continue
+            gcurves[label] = rew
+            finals = [float(moving_average(r, args.window)[-1]) for r in rew]
+            bests = [float(moving_average(r, args.window).max()) for r in rew]
+            ev = {}
+            for tag in ["sampled", "greedy"]:
+                ms = [json.load(open(os.path.join(d, f"eval_summary_{tag}.json")))["mean"] for d in dirs if os.path.exists(os.path.join(d, f"eval_summary_{tag}.json"))]
+                sds = [json.load(open(os.path.join(d, f"eval_summary_{tag}.json")))["std"] for d in dirs if os.path.exists(os.path.join(d, f"eval_summary_{tag}.json"))]
+                if ms:
+                    ev[tag] = {"mean_per_seed": ms, "std_per_seed": sds, "mean_over_seeds": float(np.mean(ms)), "std_over_seeds": float(np.std(ms))}
+            gsummary[label] = {"runs": dirs, "episodes_per_seed": [int(len(r)) for r in rew], "final_ma100_per_seed": finals,
+                               "final_ma100_mean": float(np.mean(finals)), "final_ma100_std": float(np.std(finals)),
+                               "best_ma100_per_seed": bests, "eval": ev}
+        if gcurves:
+            viz.compare_curves(gcurves, os.path.join(args.out, "compare_seed_groups.png"),
+                               f"Pong-v5: {args.window}-episode moving-average reward, mean +- 1 std over seeds", window=args.window)
+            with open(os.path.join(args.out, "seed_groups.json"), "w") as f:
+                json.dump(gsummary, f, indent=2)
+            summary["seed_groups"] = gsummary
     with open(os.path.join(args.out, "summary.json"), "w") as f:
         json.dump(summary, f, indent=2)
     print(json.dumps(summary, indent=2))
