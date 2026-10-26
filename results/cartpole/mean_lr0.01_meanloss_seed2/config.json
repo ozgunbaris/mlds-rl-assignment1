@@ -1,0 +1,15 @@
+{
+  "out": "results/cartpole/mean_lr0.01_meanloss_seed2",
+  "baseline": "mean",
+  "episodes": 2000,
+  "gamma": 0.95,
+  "lr": 0.01,
+  "value_lr": 0.01,
+  "value_epochs": 5,
+  "ema_rate": 0.05,
+  "hidden": 128,
+  "loss_norm": "mean",
+  "seed": 2,
+  "eval_episodes": 500,
+  "print_every": 1000
+}

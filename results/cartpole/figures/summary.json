@@ -1,21 +1,205 @@
 {
-  "mean_lr0.01": {
+  "mean_lr0.01_meanloss": {
     "baseline": "mean",
     "lr": 0.01,
+    "loss_norm": "mean",
     "seeds": [
       0,
       1,
       2,
-      3
+      3,
+      4
+    ],
+    "train_episodes": 2000,
+    "final_ma100_per_seed": [
+      439.42,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "peak_ma100_per_seed": [
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "first_episode_ma100_ge_475_per_seed": [
+      189,
+      225,
+      777,
+      248,
+      348
+    ],
+    "eval_mean_per_seed": [
+      499.67,
+      500.0,
+      500.0,
+      497.438,
+      500.0
+    ],
+    "eval_std_per_seed": [
+      2.569260594023113,
+      0.0,
+      0.0,
+      32.978874389523966,
+      0.0
+    ],
+    "eval_greedy_mean_per_seed": [
+      499.84,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "eval_mean_avg": 499.4216,
+    "eval_mean_min": 497.438,
+    "eval_mean_max": 500.0,
+    "seeds_collapsed_eval_lt_50": 0,
+    "best_seed": 1
+  },
+  "none_lr0.01_meanloss": {
+    "baseline": "none",
+    "lr": 0.01,
+    "loss_norm": "mean",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "train_episodes": 2000,
+    "final_ma100_per_seed": [
+      9.27,
+      9.32,
+      69.78,
+      9.34,
+      9.32
+    ],
+    "peak_ma100_per_seed": [
+      50.73,
+      40.28,
+      301.71,
+      37.0,
+      20.0
+    ],
+    "first_episode_ma100_ge_475_per_seed": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "eval_mean_per_seed": [
+      9.39,
+      9.352,
+      90.124,
+      9.336,
+      9.358
+    ],
+    "eval_std_per_seed": [
+      0.7334166619323562,
+      0.7376286328498914,
+      8.656132161652803,
+      0.7791687878759005,
+      0.7522207122912794
+    ],
+    "eval_greedy_mean_per_seed": [
+      9.418,
+      9.296,
+      89.942,
+      9.336,
+      9.376
+    ],
+    "eval_mean_avg": 25.512,
+    "eval_mean_min": 9.336,
+    "eval_mean_max": 90.124,
+    "seeds_collapsed_eval_lt_50": 4,
+    "best_seed": 2
+  },
+  "value_lr0.01_meanloss": {
+    "baseline": "value",
+    "lr": 0.01,
+    "loss_norm": "mean",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "train_episodes": 2000,
+    "final_ma100_per_seed": [
+      134.32,
+      500.0,
+      500.0,
+      141.96,
+      500.0
+    ],
+    "peak_ma100_per_seed": [
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "first_episode_ma100_ge_475_per_seed": [
+      216,
+      176,
+      521,
+      330,
+      302
+    ],
+    "eval_mean_per_seed": [
+      144.838,
+      499.994,
+      500.0,
+      198.964,
+      500.0
+    ],
+    "eval_std_per_seed": [
+      12.892313834219209,
+      0.13402984742213206,
+      0.0,
+      62.727336178097026,
+      0.0
+    ],
+    "eval_greedy_mean_per_seed": [
+      148.858,
+      500.0,
+      500.0,
+      210.032,
+      500.0
+    ],
+    "eval_mean_avg": 368.75919999999996,
+    "eval_mean_min": 144.838,
+    "eval_mean_max": 500.0,
+    "seeds_collapsed_eval_lt_50": 0,
+    "best_seed": 2
+  },
+  "mean_lr0.01": {
+    "baseline": "mean",
+    "lr": 0.01,
+    "loss_norm": "sum",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
     ],
     "train_episodes": 2000,
     "final_ma100_per_seed": [
       185.55,
       500.0,
       438.32,
-      379.45
+      379.45,
+      484.37
     ],
     "peak_ma100_per_seed": [
+      500.0,
       500.0,
       500.0,
       500.0,
@@ -25,26 +209,31 @@
       481,
       808,
       1278,
-      171
+      171,
+      369
     ],
     "eval_mean_per_seed": [
       226.462,
       500.0,
       394.844,
-      500.0
+      500.0,
+      421.82
     ],
     "eval_std_per_seed": [
       8.216602460871524,
       0.0,
       10.826987762069374,
-      0.0
+      0.0,
+      79.78591103697444
     ],
     "eval_greedy_mean_per_seed": [
       231.038,
       500.0,
-      362.974
+      362.974,
+      500.0,
+      468.342
     ],
-    "eval_mean_avg": 405.3265,
+    "eval_mean_avg": 408.6252,
     "eval_mean_min": 226.462,
     "eval_mean_max": 500.0,
     "seeds_collapsed_eval_lt_50": 0,
@@ -53,6 +242,7 @@
   "none_lr0.01": {
     "baseline": "none",
     "lr": 0.01,
+    "loss_norm": "sum",
     "seeds": [
       0,
       1,
@@ -112,18 +302,25 @@
   "value_lr0.01": {
     "baseline": "value",
     "lr": 0.01,
+    "loss_norm": "sum",
     "seeds": [
       0,
       1,
-      2
+      2,
+      3,
+      4
     ],
     "train_episodes": 2000,
     "final_ma100_per_seed": [
       478.25,
       455.37,
-      353.04
+      353.04,
+      461.65,
+      9.39
     ],
     "peak_ma100_per_seed": [
+      500.0,
+      500.0,
       500.0,
       500.0,
       500.0
@@ -131,58 +328,208 @@
     "first_episode_ma100_ge_475_per_seed": [
       500,
       474,
-      792
+      792,
+      271,
+      488
     ],
     "eval_mean_per_seed": [
       500.0,
       500.0,
-      315.894
+      315.894,
+      500.0,
+      9.328
     ],
     "eval_std_per_seed": [
       0.0,
       0.0,
-      7.899795187218464
+      7.899795187218464,
+      0.0,
+      0.7432469307033833
     ],
     "eval_greedy_mean_per_seed": [
       500.0,
       499.83,
-      317.588
+      317.588,
+      500.0,
+      9.332
     ],
-    "eval_mean_avg": 438.6313333333333,
-    "eval_mean_min": 315.894,
+    "eval_mean_avg": 365.0444,
+    "eval_mean_min": 9.328,
+    "eval_mean_max": 500.0,
+    "seeds_collapsed_eval_lt_50": 1,
+    "best_seed": 0
+  },
+  "mean_lr0.003": {
+    "baseline": "mean",
+    "lr": 0.003,
+    "loss_norm": "sum",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "train_episodes": 3000,
+    "final_ma100_per_seed": [
+      433.41,
+      500.0,
+      485.46,
+      500.0,
+      498.08
+    ],
+    "peak_ma100_per_seed": [
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "first_episode_ma100_ge_475_per_seed": [
+      501,
+      551,
+      389,
+      548,
+      402
+    ],
+    "eval_mean_per_seed": [
+      499.946,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "eval_std_per_seed": [
+      0.920371664057515,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "eval_greedy_mean_per_seed": [
+      498.174,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "eval_mean_avg": 499.9892,
+    "eval_mean_min": 499.946,
     "eval_mean_max": 500.0,
     "seeds_collapsed_eval_lt_50": 0,
-    "best_seed": 0
+    "best_seed": 1
   },
   "none_lr0.003": {
     "baseline": "none",
     "lr": 0.003,
+    "loss_norm": "sum",
     "seeds": [
-      0
+      0,
+      1,
+      2,
+      3,
+      4
     ],
     "train_episodes": 3000,
     "final_ma100_per_seed": [
-      223.66
+      223.66,
+      138.35,
+      500.0,
+      217.94,
+      98.62
     ],
     "peak_ma100_per_seed": [
+      500.0,
+      373.39,
+      500.0,
+      499.35,
       500.0
     ],
     "first_episode_ma100_ge_475_per_seed": [
-      933
+      933,
+      null,
+      2068,
+      1692,
+      720
     ],
     "eval_mean_per_seed": [
-      146.688
+      146.688,
+      181.038,
+      500.0,
+      125.68,
+      71.858
     ],
     "eval_std_per_seed": [
-      15.383713985900805
+      15.383713985900805,
+      10.452394749529889,
+      0.0,
+      8.376968425391134,
+      22.862061061942775
     ],
     "eval_greedy_mean_per_seed": [
-      151.496
+      151.496,
+      185.366,
+      500.0,
+      127.298,
+      90.654
     ],
-    "eval_mean_avg": 146.688,
-    "eval_mean_min": 146.688,
-    "eval_mean_max": 146.688,
+    "eval_mean_avg": 205.0528,
+    "eval_mean_min": 71.858,
+    "eval_mean_max": 500.0,
     "seeds_collapsed_eval_lt_50": 0,
-    "best_seed": 0
+    "best_seed": 2
+  },
+  "value_lr0.003": {
+    "baseline": "value",
+    "lr": 0.003,
+    "loss_norm": "sum",
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "train_episodes": 3000,
+    "final_ma100_per_seed": [
+      119.15,
+      500.0,
+      287.5,
+      478.3
+    ],
+    "peak_ma100_per_seed": [
+      496.33,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "first_episode_ma100_ge_475_per_seed": [
+      628,
+      1321,
+      735,
+      460
+    ],
+    "eval_mean_per_seed": [
+      116.596,
+      500.0,
+      315.016,
+      494.814
+    ],
+    "eval_std_per_seed": [
+      6.4222102114459005,
+      0.0,
+      25.962352435786705,
+      19.09857073186368
+    ],
+    "eval_greedy_mean_per_seed": [
+      117.42,
+      500.0,
+      264.024,
+      500.0
+    ],
+    "eval_mean_avg": 356.60650000000004,
+    "eval_mean_min": 116.596,
+    "eval_mean_max": 500.0,
+    "seeds_collapsed_eval_lt_50": 0,
+    "best_seed": 1
   }
 }
