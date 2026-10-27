@@ -25,7 +25,7 @@
     }
   },
   "lr_groups": {
-    "lr 0.01 (5 seeds)": {
+    "lr 0.01": {
       "runs": [
         "results/pong/cluster_lr1e-2_none_seed0",
         "results/pong/cluster_lr1e-2_none_seed1",
@@ -95,7 +95,7 @@
         }
       }
     },
-    "lr 1e-3 (5 seeds)": {
+    "lr 1e-3": {
       "runs": [
         "results/pong/cluster_none_seed0",
         "results/pong/cluster_none_seed1",
@@ -165,7 +165,7 @@
         }
       }
     },
-    "lr 3e-4 (5 seeds)": {
+    "lr 3e-4": {
       "runs": [
         "results/pong/cluster_lr3e-4_none_seed0",
         "results/pong/cluster_lr3e-4_none_seed1",

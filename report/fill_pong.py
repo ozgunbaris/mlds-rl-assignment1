@@ -145,7 +145,7 @@ if gv:
 
 # ---- cluster seed groups
 sg = jload("results/pong/figures/seed_groups.json", {})
-for key, label in [("CL_NONE", "no baseline (5 seeds, cluster)"), ("CL_MEAN", "constant baseline (5 seeds, cluster)"), ("CL_VALUE", "value baseline (5 seeds, cluster)")]:
+for key, label in [("CL_NONE", "no baseline"), ("CL_MEAN", "constant baseline"), ("CL_VALUE", "value baseline")]:
     g = sg.get(label)
     if not g:
         missing.append(f"seed group {label}")
@@ -159,7 +159,7 @@ for key, label in [("CL_NONE", "no baseline (5 seeds, cluster)"), ("CL_MEAN", "c
     V[f"{key}_EVAL_LIST"] = lst(ev["mean_per_seed"]) if ev else "MISSING"
     V[f"{key}_EVAL_MEAN"] = fmt(ev["mean_over_seeds"]) if ev else "MISSING"
 lg = jload("results/pong/figures/lr_groups.json", {})
-for key, label in [("LRS_1E2", "lr 0.01 (5 seeds)"), ("LRS_1E3", "lr 1e-3 (5 seeds)"), ("LRS_3E4", "lr 3e-4 (5 seeds)")]:
+for key, label in [("LRS_1E2", "lr 0.01"), ("LRS_1E3", "lr 1e-3"), ("LRS_3E4", "lr 3e-4")]:
     g = lg.get(label)
     if not g:
         missing.append(f"lr group {label}")

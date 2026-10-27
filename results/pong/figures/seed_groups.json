@@ -1,5 +1,5 @@
 {
-  "no baseline (5 seeds, cluster)": {
+  "no baseline": {
     "runs": [
       "results/pong/cluster_none_seed0",
       "results/pong/cluster_none_seed1",
@@ -69,7 +69,7 @@
       }
     }
   },
-  "constant baseline (5 seeds, cluster)": {
+  "constant baseline": {
     "runs": [
       "results/pong/cluster_mean_seed0",
       "results/pong/cluster_mean_seed1",
@@ -139,7 +139,7 @@
       }
     }
   },
-  "value baseline (5 seeds, cluster)": {
+  "value baseline": {
     "runs": [
       "results/pong/cluster_value_seed0",
       "results/pong/cluster_value_seed1",
