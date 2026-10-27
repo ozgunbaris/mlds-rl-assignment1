@@ -14,15 +14,21 @@ colorlinks: true
 All code is in the repository. `README.md` lists every command. Short version (Python 3.12, run from the repository root):
 
 ```bash
-python3.12 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
-python -m shuttle_mdp.run_shuttle --out results/shuttle            # Part 2 figures
-python -m shuttle_mdp.validate_shuttle --out results/shuttle       # Part 2 validation experiments
-python -m policy_gradient.cartpole_reinforce --out results/cartpole/none_seed0  --baseline none  --lr 0.01
-python -m policy_gradient.cartpole_reinforce --out results/cartpole/value_seed0 --baseline value --lr 0.01
-python -m policy_gradient.pong_reinforce --out results/pong/none_lr1e-3  --baseline none  --lr 1e-3 --time-limit-hours 5
-python -m policy_gradient.pong_reinforce --out results/pong/value_lr1e-3 --baseline value --lr 1e-3 --time-limit-hours 5
-python -m policy_gradient.pong_reinforce --eval results/pong/none_lr1e-3/checkpoint.pt --eval-episodes 500 --out results/pong/none_lr1e-3
-python -m pytest tests -q                                           # 25 unit and property tests
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python -m shuttle_mdp.run_shuttle --out results/shuttle        # Part 2 figures
+python -m shuttle_mdp.validate_shuttle --out results/shuttle   # Part 2 validation
+python -m policy_gradient.cartpole_reinforce --baseline none --lr 0.01 \
+    --out results/cartpole/none_seed0                          # Part 1
+python -m policy_gradient.cartpole_reinforce --baseline value --lr 0.01 \
+    --out results/cartpole/value_seed0                         # Part 2
+python -m policy_gradient.pong_reinforce --baseline none --lr 1e-3 \
+    --time-limit-hours 5 --out results/pong/none_lr1e-3        # Part 1
+python -m policy_gradient.pong_reinforce --baseline value --lr 1e-3 \
+    --time-limit-hours 5 --out results/pong/value_lr1e-3       # Part 2
+python -m policy_gradient.pong_reinforce --eval-episodes 500 \
+    --eval results/pong/none_lr1e-3/checkpoint.pt --out results/pong/none_lr1e-3
+python -m pytest tests -q                                      # 25 tests
 ```
 
 `scripts/run_cartpole_sweeps.sh` and `scripts/run_pong.sh` contain the exact loops used for every figure. Each `results/*` folder holds the logs (`episodes.csv`, `updates.csv`), checkpoints, figures and `validation.md` with the numbers quoted below.
