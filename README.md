@@ -1,4 +1,4 @@
-# MLDS Reinforcement Learning, Assignment 1
+# IEMS 469 Reinforcement Learning, Assignment 1
 
 Solutions for the three parts of the assignment:
 
