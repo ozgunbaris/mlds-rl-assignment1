@@ -8,7 +8,7 @@ Solutions for the three parts of the assignment:
 | 3 (Part 1) | REINFORCE on CartPole-v1 and Pong-v5 (PyTorch) | `policy_gradient/` | `results/cartpole/`, `results/pong/` |
 | 3 (Part 2) | REINFORCE with a baseline (constant mean-return baseline and learned state-value baseline) | same scripts, `--baseline mean|value` | same folders |
 
-The written report is `report/report.pdf` (source `report/report.md`).
+The written report is `report/report.pdf` (source `report/report.md`; rebuild with `report/build.sh`, which needs pandoc and xelatex).
 
 ## Setup
 
@@ -68,6 +68,21 @@ python -m policy_gradient.make_plots_pong --runs results/pong/none_lr1e-3 result
 python -m policy_gradient.validate_pong --policy results/pong/none_lr1e-3/checkpoint.pt --value-ckpt results/pong/value_lr1e-3/checkpoint.pt --out results/pong/validation
 ```
 
+### Pong on the Deepdish cluster (Nomad)
+
+The seeded Pong experiments (5 seeds x {no baseline, constant baseline, value baseline} at lr 1e-3, and 5 seeds each at lr 0.01 and 3e-4 without baseline) ran as Nomad batch jobs on the lab cluster, CPU only. `scripts/nomad/make_job.sh` generates a job file that embeds the code as a base64 tarball, installs the dependencies in a `python:3.12-slim` container, runs the unit tests, trains all runs in parallel for a fixed number of hours, rolls out 500 games per run (sampled and greedy actions) and packs the results:
+
+```bash
+HOURS=4.0 BASELINES="none mean value" CORES=36 MEMORY=40960 JOB_NAME=pong-reinforce NODE=mlds-deepdish5 LR=1e-3 PREFIX=cluster scripts/nomad/make_job.sh
+HOURS=3.3 BASELINES="none" CORES=12 MEMORY=12288 JOB_NAME=pong-lr1e-2 NODE=mlds-deepdish5 LR=1e-2 PREFIX=cluster_lr1e-2 scripts/nomad/make_job.sh
+HOURS=3.3 BASELINES="none" CORES=12 MEMORY=12288 JOB_NAME=pong-lr3e-4 NODE=mlds-deepdish2 LR=3e-4 PREFIX=cluster_lr3e-4 scripts/nomad/make_job.sh
+# on the Nomad server: nomad job validate <file>; nomad job plan <file>; nomad job run -detach <file>
+scripts/fetch_cluster_results.sh <alloc-id> <job-name>     # copies results/pong/<prefix>_* and the job logs back
+scripts/check_runs.sh                                       # one-shot status of local and cluster runs
+```
+
+The generated job files used for the report are in `scripts/nomad/*.nomad`; the fetched runs are `results/pong/cluster_*` (same layout as the local runs: `episodes.csv`, `updates.csv`, `eval_summary_*.json`, `eval_rewards_*.npy`, `policy_weights.pt`, `train.log`). `scripts/finalize_pong_local.sh` and `scripts/finalize_pong_plots.sh` produce the local roll-outs, all Pong figures (`results/pong/figures`) and the validation experiments.
+
 ### Unit tests for the policy-gradient code
 
 ```bash
@@ -89,6 +104,7 @@ policy_gradient/make_plots_*.py   figures and summary tables
 policy_gradient/validate_*.py     validation experiments
 viz.py                            plotting style
 tests/                            pytest suites
-results/                          logs (episodes.csv, updates.csv), checkpoints, figures, summaries
-report/                           report.md and report.pdf
+scripts/                          experiment loops, Nomad job generator, cluster fetch and status scripts
+results/                          logs (episodes.csv, updates.csv), policy weights, figures, summaries, validation outputs
+report/                           report.md, build.py (figure numbering + pandoc), report.pdf
 ```
