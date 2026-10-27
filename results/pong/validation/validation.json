@@ -1,0 +1,117 @@
+{
+  "trained_checkpoint": {
+    "path": "results/pong/none_lr1e-3/checkpoint.pt",
+    "episodes": 11508,
+    "updates": 1150
+  },
+  "preprocess": {
+    "active_pixels": 34,
+    "diff_nonzero": 16,
+    "unique_values": [
+      0.0,
+      1.0
+    ]
+  },
+  "action_semantics": {
+    "RIGHT_rows": [
+      34.5,
+      1.0
+    ],
+    "LEFT_rows": [
+      34.5,
+      78.5
+    ]
+  },
+  "random_policy": {
+    "episodes": 20,
+    "mean": -20.1,
+    "std": 0.7681145747868607,
+    "max": -19.0,
+    "mean_length": 1105.15,
+    "structure_ok": true
+  },
+  "returns": {
+    "episode_score": 1.0,
+    "length": 5857,
+    "G_min": -1.9459256915104297,
+    "G_max": 1.5545998656362485,
+    "G_at_first_loss": -0.29919582827939495,
+    "G_10_steps_before_first_loss": -0.27058734401329704,
+    "expected_ratio_0.99^10": 0.9043820750088044
+  },
+  "probe": {
+    "trained": {
+      "P_up_given_ball_above": 0.5191445843132796,
+      "P_up_given_ball_below": 0.2964825587971928,
+      "n_above": 12014,
+      "n_below": 4143
+    },
+    "random": {
+      "P_up_given_ball_above": 0.48176794474231266,
+      "P_up_given_ball_below": 0.48235153753200627,
+      "n_above": 538,
+      "n_below": 441
+    }
+  },
+  "gradient_variance": {
+    "none": {
+      "trace_cov": 0.0008107700268737972,
+      "mean_norm": 0.009241115301847458,
+      "snr_of_M_episode_average": 1.1242584734872771,
+      "cos_with_none": 1.0000001192092896
+    },
+    "mean": {
+      "trace_cov": 0.0007682738360017538,
+      "mean_norm": 0.009657396003603935,
+      "snr_of_M_episode_average": 1.206959344548734,
+      "cos_with_none": 0.9502332210540771
+    },
+    "value": {
+      "trace_cov": 0.0002995263203047216,
+      "mean_norm": 0.006326986011117697,
+      "snr_of_M_episode_average": 1.2663973750519975,
+      "cos_with_none": 0.7339345812797546
+    },
+    "episodes": 12,
+    "mean_score": 9.333333333333334,
+    "value_checkpoint": "results/pong/value_lr1e-3/checkpoint.pt"
+  },
+  "trace": {
+    "nonzero": [
+      18,
+      18,
+      32,
+      20,
+      28,
+      4,
+      32,
+      4,
+      32,
+      4
+    ],
+    "p_up": [
+      0.0024758363142609596,
+      0.07175195217132568,
+      0.3091523349285126,
+      0.9848010540008545,
+      0.05465398356318474,
+      0.3951926529407501,
+      0.9886258244514465,
+      0.8255611658096313,
+      0.015603022649884224,
+      0.3951926529407501
+    ],
+    "actions": [
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0
+    ]
+  }
+}

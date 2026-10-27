@@ -1,0 +1,23 @@
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+eval 50/500 mean 5.66
+eval 100/500 mean 5.77
+eval 150/500 mean 5.77
+eval 200/500 mean 5.86
+eval 250/500 mean 5.74
+eval 300/500 mean 5.88
+eval 350/500 mean 5.70
+eval 400/500 mean 5.57
+eval 450/500 mean 5.43
+eval 500/500 mean 5.36
+{
+  "episodes": 500,
+  "mean": 5.358,
+  "std": 5.122678596203357,
+  "min": -15.0,
+  "max": 17.0,
+  "mean_length": 5574.496,
+  "mode": "greedy",
+  "checkpoint": "results/pong/cluster_mean_seed4/checkpoint.pt",
+  "seconds": 1306.1
+}

@@ -1,0 +1,239 @@
+{
+  "none_lr1e-3": {
+    "baseline": "none",
+    "lr": 0.001,
+    "episodes": 11508,
+    "env_steps": 39465016,
+    "hours": 5.499916666666667,
+    "final_ma100": 8.54,
+    "best_ma100": 9.11,
+    "best_ma100_episode": 11046,
+    "first_ma100": -20.35,
+    "eval_sampled": {
+      "episodes": 500,
+      "mean": 8.3,
+      "std": 5.462783173438242,
+      "min": -11.0,
+      "max": 20.0
+    },
+    "eval_greedy": {
+      "episodes": 500,
+      "mean": 9.03,
+      "std": 5.056985267923963,
+      "min": -9.0,
+      "max": 19.0
+    }
+  },
+  "lr_groups": {
+    "lr 0.01 (5 seeds)": {
+      "runs": [
+        "results/pong/cluster_lr1e-2_none_seed0",
+        "results/pong/cluster_lr1e-2_none_seed1",
+        "results/pong/cluster_lr1e-2_none_seed2",
+        "results/pong/cluster_lr1e-2_none_seed3",
+        "results/pong/cluster_lr1e-2_none_seed4"
+      ],
+      "episodes_per_seed": [
+        26982,
+        30055,
+        29468,
+        30306,
+        30138
+      ],
+      "final_ma100_per_seed": [
+        -21.0,
+        -21.0,
+        -21.0,
+        -21.0,
+        -21.0
+      ],
+      "final_ma100_mean": -21.0,
+      "final_ma100_std": 0.0,
+      "best_ma100_per_seed": [
+        -19.6,
+        -20.2,
+        -19.11,
+        -20.14,
+        -19.76
+      ],
+      "eval": {
+        "sampled": {
+          "mean_per_seed": [
+            -21.0,
+            -21.0,
+            -21.0,
+            -21.0,
+            -21.0
+          ],
+          "std_per_seed": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mean_over_seeds": -21.0,
+          "std_over_seeds": 0.0
+        },
+        "greedy": {
+          "mean_per_seed": [
+            -21.0,
+            -21.0,
+            -21.0,
+            -21.0,
+            -21.0
+          ],
+          "std_per_seed": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mean_over_seeds": -21.0,
+          "std_over_seeds": 0.0
+        }
+      }
+    },
+    "lr 1e-3 (5 seeds)": {
+      "runs": [
+        "results/pong/cluster_none_seed0",
+        "results/pong/cluster_none_seed1",
+        "results/pong/cluster_none_seed2",
+        "results/pong/cluster_none_seed3",
+        "results/pong/cluster_none_seed4"
+      ],
+      "episodes_per_seed": [
+        8544,
+        7763,
+        7533,
+        8434,
+        7196
+      ],
+      "final_ma100_per_seed": [
+        10.93,
+        -2.59,
+        8.03,
+        -1.42,
+        -3.94
+      ],
+      "final_ma100_mean": 2.2019999999999995,
+      "final_ma100_std": 6.065474095237733,
+      "best_ma100_per_seed": [
+        12.64,
+        -1.79,
+        9.18,
+        -0.21,
+        -3.0
+      ],
+      "eval": {
+        "sampled": {
+          "mean_per_seed": [
+            11.168,
+            -2.718,
+            8.418,
+            -1.168,
+            -2.946
+          ],
+          "std_per_seed": [
+            4.496640523768828,
+            4.852058944407003,
+            5.291812165978683,
+            5.04774959759297,
+            4.827326796478564
+          ],
+          "mean_over_seeds": 2.5507999999999997,
+          "std_over_seeds": 6.008073048823558
+        },
+        "greedy": {
+          "mean_per_seed": [
+            11.742,
+            -0.318,
+            9.722,
+            1.226,
+            -1.032
+          ],
+          "std_per_seed": [
+            4.061457373899177,
+            4.885987720000942,
+            4.600512580137131,
+            4.995089989179374,
+            5.12591221149953
+          ],
+          "mean_over_seeds": 4.268,
+          "std_over_seeds": 5.366226830837474
+        }
+      }
+    },
+    "lr 3e-4 (5 seeds)": {
+      "runs": [
+        "results/pong/cluster_lr3e-4_none_seed0",
+        "results/pong/cluster_lr3e-4_none_seed1",
+        "results/pong/cluster_lr3e-4_none_seed2",
+        "results/pong/cluster_lr3e-4_none_seed3",
+        "results/pong/cluster_lr3e-4_none_seed4"
+      ],
+      "episodes_per_seed": [
+        7379,
+        7675,
+        7325,
+        7462,
+        7276
+      ],
+      "final_ma100_per_seed": [
+        -11.23,
+        -14.31,
+        -11.65,
+        -7.53,
+        -8.61
+      ],
+      "final_ma100_mean": -10.666,
+      "final_ma100_std": 2.392769107122541,
+      "best_ma100_per_seed": [
+        -10.95,
+        -13.93,
+        -11.37,
+        -7.51,
+        -8.53
+      ],
+      "eval": {
+        "sampled": {
+          "mean_per_seed": [
+            -10.878,
+            -13.92,
+            -11.104,
+            -6.682,
+            -8.412
+          ],
+          "std_per_seed": [
+            4.806986165987999,
+            2.8095551249263644,
+            2.8546775649799754,
+            5.536142700472957,
+            5.011811648495981
+          ],
+          "mean_over_seeds": -10.199200000000001,
+          "std_over_seeds": 2.4774408085764628
+        },
+        "greedy": {
+          "mean_per_seed": [
+            -4.682,
+            -7.718,
+            -7.78,
+            2.08,
+            3.918
+          ],
+          "std_per_seed": [
+            5.857719351419971,
+            5.680006690136905,
+            3.6616389772887223,
+            5.998799879975993,
+            6.609635088263194
+          ],
+          "mean_over_seeds": -2.8364000000000003,
+          "std_over_seeds": 4.928860866366589
+        }
+      }
+    }
+  }
+}

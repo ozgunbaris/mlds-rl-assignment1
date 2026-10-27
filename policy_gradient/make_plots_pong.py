@@ -50,7 +50,7 @@ def main():
         wall = np.array([float(r["wall_time_s"]) for r in eps]) / 3600
         ma = moving_average(rewards, args.window)
         viz.training_curve(rewards, os.path.join(args.out, f"{name}_training.png"),
-                           f"Pong-v5 REINFORCE, baseline = {cfg['baseline']}, lr = {cfg['lr']}: episode reward during training", window=args.window)
+                           f"Pong-v5 REINFORCE, baseline = {cfg['baseline']}, lr = {cfg['lr']:g}: episode reward during training", window=args.window)
         s = {"baseline": cfg["baseline"], "lr": cfg["lr"], "episodes": int(len(rewards)), "env_steps": int(steps[-1]),
              "hours": float(wall[-1]), "final_ma100": float(ma[-1]), "best_ma100": float(ma.max()), "best_ma100_episode": int(ma.argmax() + 1),
              "first_ma100": float(ma[min(99, len(ma) - 1)])}
@@ -61,7 +61,7 @@ def main():
                 s[f"eval_{tag}"] = {kk: ev[kk] for kk in ["episodes", "mean", "std", "min", "max"]}
                 er = np.load(os.path.join(run, f"eval_rewards_{tag}.npy"))
                 viz.reward_histogram(er, os.path.join(args.out, f"{name}_hist_{tag}.png"),
-                                     f"Pong-v5: {len(er)} roll-out episodes ({tag} actions), baseline = {cfg['baseline']}, lr = {cfg['lr']}",
+                                     f"Pong-v5: {len(er)} roll-out games, {tag} actions, baseline = {cfg['baseline']}",
                                      bins=np.arange(-21.5, 22.5, 1.0))
         summary[name] = s
         curves_ep[label] = rewards

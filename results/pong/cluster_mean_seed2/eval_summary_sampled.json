@@ -1,0 +1,11 @@
+{
+  "episodes": 500,
+  "mean": -0.34,
+  "std": 5.188487255453173,
+  "min": -13.0,
+  "max": 14.0,
+  "mean_length": 5407.774,
+  "mode": "sampled",
+  "checkpoint": "results/pong/cluster_mean_seed2/checkpoint.pt",
+  "seconds": 1377.1
+}

@@ -1,0 +1,297 @@
+{
+  "none_lr1e-3": {
+    "baseline": "none",
+    "lr": 0.001,
+    "episodes": 11508,
+    "env_steps": 39465016,
+    "hours": 5.499916666666667,
+    "final_ma100": 8.54,
+    "best_ma100": 9.11,
+    "best_ma100_episode": 11046,
+    "first_ma100": -20.35,
+    "eval_sampled": {
+      "episodes": 500,
+      "mean": 8.3,
+      "std": 5.462783173438242,
+      "min": -11.0,
+      "max": 20.0
+    },
+    "eval_greedy": {
+      "episodes": 500,
+      "mean": 9.03,
+      "std": 5.056985267923963,
+      "min": -9.0,
+      "max": 19.0
+    }
+  },
+  "value_lr1e-3": {
+    "baseline": "value",
+    "lr": 0.001,
+    "episodes": 8005,
+    "env_steps": 35967822,
+    "hours": 5.299611111111111,
+    "final_ma100": 9.63,
+    "best_ma100": 9.79,
+    "best_ma100_episode": 8002,
+    "first_ma100": -20.47,
+    "eval_sampled": {
+      "episodes": 500,
+      "mean": 9.568,
+      "std": 3.9695561464728017,
+      "min": -4.0,
+      "max": 19.0
+    },
+    "eval_greedy": {
+      "episodes": 500,
+      "mean": 10.178,
+      "std": 3.62964405968409,
+      "min": -5.0,
+      "max": 18.0
+    }
+  },
+  "none_lr3e-4": {
+    "baseline": "none",
+    "lr": 0.0003,
+    "episodes": 1527,
+    "env_steps": 1612634,
+    "hours": 0.38755555555555554,
+    "final_ma100": -20.36,
+    "best_ma100": -19.6,
+    "best_ma100_episode": 5,
+    "first_ma100": -20.44
+  },
+  "value_lr3e-4": {
+    "baseline": "value",
+    "lr": 0.0003,
+    "episodes": 660,
+    "env_steps": 699456,
+    "hours": 0.2351111111111111,
+    "final_ma100": -20.48,
+    "best_ma100": -20.27,
+    "best_ma100_episode": 447,
+    "first_ma100": -20.41
+  },
+  "none_lr1e-4": {
+    "baseline": "none",
+    "lr": 0.0001,
+    "episodes": 816,
+    "env_steps": 843817,
+    "hours": 0.14919444444444446,
+    "final_ma100": -20.28,
+    "best_ma100": -19.6,
+    "best_ma100_episode": 5,
+    "first_ma100": -20.43
+  },
+  "seed_groups": {
+    "no baseline (5 seeds, cluster)": {
+      "runs": [
+        "results/pong/cluster_none_seed0",
+        "results/pong/cluster_none_seed1",
+        "results/pong/cluster_none_seed2",
+        "results/pong/cluster_none_seed3",
+        "results/pong/cluster_none_seed4"
+      ],
+      "episodes_per_seed": [
+        8544,
+        7763,
+        7533,
+        8434,
+        7196
+      ],
+      "final_ma100_per_seed": [
+        10.93,
+        -2.59,
+        8.03,
+        -1.42,
+        -3.94
+      ],
+      "final_ma100_mean": 2.2019999999999995,
+      "final_ma100_std": 6.065474095237733,
+      "best_ma100_per_seed": [
+        12.64,
+        -1.79,
+        9.18,
+        -0.21,
+        -3.0
+      ],
+      "eval": {
+        "sampled": {
+          "mean_per_seed": [
+            11.168,
+            -2.718,
+            8.418,
+            -1.168,
+            -2.946
+          ],
+          "std_per_seed": [
+            4.496640523768828,
+            4.852058944407003,
+            5.291812165978683,
+            5.04774959759297,
+            4.827326796478564
+          ],
+          "mean_over_seeds": 2.5507999999999997,
+          "std_over_seeds": 6.008073048823558
+        },
+        "greedy": {
+          "mean_per_seed": [
+            11.742,
+            -0.318,
+            9.722,
+            1.226,
+            -1.032
+          ],
+          "std_per_seed": [
+            4.061457373899177,
+            4.885987720000942,
+            4.600512580137131,
+            4.995089989179374,
+            5.12591221149953
+          ],
+          "mean_over_seeds": 4.268,
+          "std_over_seeds": 5.366226830837474
+        }
+      }
+    },
+    "constant baseline (5 seeds, cluster)": {
+      "runs": [
+        "results/pong/cluster_mean_seed0",
+        "results/pong/cluster_mean_seed1",
+        "results/pong/cluster_mean_seed2",
+        "results/pong/cluster_mean_seed3",
+        "results/pong/cluster_mean_seed4"
+      ],
+      "episodes_per_seed": [
+        6610,
+        5444,
+        5885,
+        6915,
+        5649
+      ],
+      "final_ma100_per_seed": [
+        10.11,
+        -1.21,
+        -1.4,
+        12.75,
+        3.84
+      ],
+      "final_ma100_mean": 4.818,
+      "final_ma100_std": 5.777173703464351,
+      "best_ma100_per_seed": [
+        11.52,
+        -0.23,
+        0.04,
+        13.64,
+        3.97
+      ],
+      "eval": {
+        "sampled": {
+          "mean_per_seed": [
+            9.89,
+            -0.762,
+            -0.34,
+            12.938,
+            3.656
+          ],
+          "std_per_seed": [
+            4.953170701681904,
+            5.260166917503665,
+            5.188487255453173,
+            3.6218995016427495,
+            5.638587057056049
+          ],
+          "mean_over_seeds": 5.0764,
+          "std_over_seeds": 5.484839818991983
+        },
+        "greedy": {
+          "mean_per_seed": [
+            11.572,
+            2.102,
+            1.796,
+            14.02,
+            5.358
+          ],
+          "std_per_seed": [
+            3.9689817333920803,
+            4.965037361390144,
+            5.085113961358191,
+            3.2996363435990945,
+            5.122678596203357
+          ],
+          "mean_over_seeds": 6.9696,
+          "std_over_seeds": 4.978898416316605
+        }
+      }
+    },
+    "value baseline (5 seeds, cluster)": {
+      "runs": [
+        "results/pong/cluster_value_seed0",
+        "results/pong/cluster_value_seed1",
+        "results/pong/cluster_value_seed2",
+        "results/pong/cluster_value_seed3",
+        "results/pong/cluster_value_seed4"
+      ],
+      "episodes_per_seed": [
+        4572,
+        5309,
+        4443,
+        4841,
+        5782
+      ],
+      "final_ma100_per_seed": [
+        2.45,
+        11.61,
+        -0.06,
+        1.23,
+        12.27
+      ],
+      "final_ma100_mean": 5.5,
+      "final_ma100_std": 5.321916947867563,
+      "best_ma100_per_seed": [
+        2.69,
+        12.6,
+        0.53,
+        1.76,
+        12.61
+      ],
+      "eval": {
+        "sampled": {
+          "mean_per_seed": [
+            1.8,
+            11.614,
+            0.628,
+            1.114,
+            12.816
+          ],
+          "std_per_seed": [
+            5.880136052847757,
+            4.497221809072797,
+            5.371556199091656,
+            5.205094043338699,
+            3.6636244349004987
+          ],
+          "mean_over_seeds": 5.5944,
+          "std_over_seeds": 5.431826123873996
+        },
+        "greedy": {
+          "mean_per_seed": [
+            4.418,
+            12.42,
+            2.832,
+            3.208,
+            13.56
+          ],
+          "std_per_seed": [
+            5.416204944423725,
+            4.209465524267896,
+            5.338892769104845,
+            5.062088106700633,
+            3.30732520324204
+          ],
+          "mean_over_seeds": 7.2876,
+          "std_over_seeds": 4.699247667446354
+        }
+      }
+    }
+  }
+}

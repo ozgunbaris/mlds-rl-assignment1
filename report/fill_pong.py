@@ -169,6 +169,47 @@ for key, label in [("LRS_1E2", "lr 0.01 (5 seeds)"), ("LRS_1E3", "lr 1e-3 (5 see
     ev = g.get("eval", {}).get("sampled")
     V[f"{key}_EVAL_MEAN"] = fmt(ev["mean_over_seeds"]) if ev else "MISSING"
 
+# steps / games to reach moving-average thresholds (local runs)
+def first_at(name, thr):
+    r = rows(f"results/pong/{name}/episodes.csv")
+    if not r:
+        return None, None
+    ma = moving_average([float(x["reward"]) for x in r], 100)
+    idx = [i for i in range(len(ma)) if ma[i] >= thr]
+    if not idx:
+        return None, None
+    i = idx[0]
+    return int(r[i]["env_steps"]) / 1e6, i + 1
+for key, name in [("NONE", "none_lr1e-3"), ("VALUE", "value_lr1e-3")]:
+    for thr, tag in [(0, "0"), (5, "5")]:
+        st, g = first_at(name, thr)
+        V[f"{key}_STEPS_TO_{tag}"] = fmt(st, 1) if st is not None else "never"
+        V[f"{key}_GAMES_TO_{tag}"] = f"{g:,}" if g else "never"
+
+# cluster groups: games to thresholds, seeds reaching 0, entropy range
+import statistics
+ents = []
+for key, pat in [("CL_NONE", "results/pong/cluster_none_seed*"), ("CL_MEAN", "results/pong/cluster_mean_seed*"), ("CL_VALUE", "results/pong/cluster_value_seed*")]:
+    g10, g0 = [], []
+    for d in sorted(glob.glob(pat)):
+        r = rows(os.path.join(d, "episodes.csv"))
+        if not r:
+            continue
+        ma = moving_average([float(x["reward"]) for x in r], 100)
+        i10 = next((i for i in range(len(ma)) if ma[i] >= -10), None)
+        i0 = next((i for i in range(len(ma)) if ma[i] >= 0), None)
+        g10.append(i10 + 1 if i10 is not None else None)
+        g0.append(i0 + 1 if i0 is not None else None)
+        u = rows(os.path.join(d, "updates.csv"))
+        if u:
+            ents.append(float(u[-1]["entropy"]))
+    have10 = [x for x in g10 if x is not None]
+    have0 = [x for x in g0 if x is not None]
+    V[f"{key}_G10"] = f"{int(statistics.median(have10)):,}" if have10 else "never"
+    V[f"{key}_N0"] = str(len(have0))
+    V[f"{key}_G0"] = f"{int(statistics.median(have0)):,}" if have0 else "none"
+V["CL_ENT_RANGE"] = f"{min(ents):.2f} to {max(ents):.2f}" if ents else "MISSING"
+
 # advantage-std ratio of the local value run (last 50 updates)
 ur = rows("results/pong/value_lr1e-3/updates.csv")
 if ur:

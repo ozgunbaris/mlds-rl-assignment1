@@ -1,0 +1,11 @@
+{
+  "episodes": 500,
+  "mean": -4.682,
+  "std": 5.857719351419971,
+  "min": -20.0,
+  "max": 12.0,
+  "mean_length": 3746.846,
+  "mode": "greedy",
+  "checkpoint": "results/pong/cluster_lr3e-4_none_seed0/checkpoint.pt",
+  "seconds": 1457.3
+}

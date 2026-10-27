@@ -161,7 +161,21 @@ Each run logs every episode (`episodes.csv`) and every update (`updates.csv`: lo
 
 ## Pong-v5
 
-PONG_PART1_PLACEHOLDER
+**Compute.** Two runs were trained on the laptop (Apple M5, 10 cores, CPU only; the 2 runs shared the machine with the CartPole sweeps and the laptop throttled to about 1,300 to 2,000 environment steps per second per run) and fifteen runs on the Deepdish node mlds-deepdish5 through Nomad (36 of its 48 CPU cores reserved, no GPU used, `scripts/nomad/`), with 5 seeds for each of no baseline, constant baseline and value baseline. All runs use the same code and hyperparameters: learning rate $10^{-3}$, batches of 10 games, 4 parallel environments, $\gamma = 0.99$, difference-frame input, 6400-200-2 policy.
+
+**Learning rate.** Three no-baseline runs with learning rates $10^{-3}$, $3 \times 10^{-4}$ and $10^{-4}$ were started together on the laptop (Figure FIG(compare_episodes)). After about 816 games the $10^{-3}$ run had a moving average of -20.19 while the two smaller rates were still at -20.35 and -20.28, so the smaller rates were stopped and $10^{-3}$ was kept for every later run. The choice was then checked with 5 seeds per learning rate on the cluster (Figure FIG(compare_lr_groups); 3.3 hours of training for 0.01 and $3 \times 10^{-4}$, 4.0 hours for $10^{-3}$): the final moving averages are -21.0, -21.0, -21.0, -21.0, -21.0 at the prescribed 0.01 (mean -21.0), 10.9, -2.6, 8.0, -1.4, -3.9 at $10^{-3}$ (mean 2.2) and -11.2, -14.3, -11.7, -7.5, -8.6 at $3 \times 10^{-4}$ (mean -10.7); the 500-game roll-outs average -21.0, 2.6 and -10.2 over seeds. At the prescribed 0.01 every seed collapsed within the first hour to a deterministic policy (entropy 0.000) that loses every point in the fewest possible steps, and stayed there for the remaining 27,000 to 30,000 games; its 500-game roll-outs score $-21.0$ in every game. At $3 \times 10^{-4}$ all seeds learn in the same direction as at $10^{-3}$ but more slowly. The prescribed rate is therefore unusable on Pong with this network, and $10^{-3}$ is the largest of the three rates that trains stably.
+
+![Pong-v5, cluster, no baseline: mean and standard deviation over 5 seeds of the moving-average reward for learning rates 0.01, 1e-3 and 3e-4.](../results/pong/figures/compare_lr_groups.png){ width=80% }
+
+**Main local run (no baseline).** The run trained for 5.50 hours, 11,508 games and 39.5 million environment steps. The 100-game moving average rose from $-20.4$ to a best value of 9.1 and ended at 8.5 (Figure FIG(none_lr1e-3_training)). The 500-game roll-out of the final network scores 8.30 on average with standard deviation 5.46 (minimum -11, maximum 20; Figure FIG(none_lr1e-3_hist_sampled)); with greedy actions the mean is 9.03 and the standard deviation 5.06. A uniformly random RIGHT/LEFT policy scores -20.10 (standard deviation 0.77; test P3).
+
+![Part 1, Pong-v5, no baseline, lr 1e-3 (local run): episode reward and its 100-episode moving average.](../results/pong/figures/none_lr1e-3_training.png){ width=80% }
+
+![Part 1, Pong-v5, no baseline (local run): 500 roll-out games of the final policy with sampled actions.](../results/pong/figures/none_lr1e-3_hist_sampled.png){ width=62% }
+
+![Pong-v5: 100-episode moving-average reward of all local runs, including the three learning rates compared at the start.](../results/pong/figures/compare_episodes.png){ width=80% }
+
+**Five seeds on the cluster (no baseline).** The five cluster runs trained for 4.0 hours each (7,196 to 8,544 games). Their final moving averages are 10.9, -2.6, 8.0, -1.4, -3.9 (mean 2.2, standard deviation over seeds 6.1) and their 500-game roll-outs 11.2, -2.7, 8.4, -1.2, -2.9 (mean over seeds 2.6). Figure FIG(compare_seed_groups) shows the mean and the spread over seeds next to the two baseline variants of Part 2.
 
 ## Edge cases (Part 1)
 
@@ -176,14 +190,14 @@ PONG_PART1_PLACEHOLDER
 
 **Pong-v5.**
 
-- *Automatic reset inside the vector environment.* With gymnasium 1.4 the step after a terminal step returns the first observation of the next game, ignores the action and gives reward 0. That step must not be recorded as a transition and the difference frame must restart from an all-zero previous frame; the `FrameTracker` class handles it, a unit test exercises the sequence (terminal step, reset step, first real step), and the training loop asserts after every episode that its own episode reward and length equal the ones reported by gymnasium's `RecordEpisodeStatistics` wrapper (no mismatch occurred in about N_PONG_EPISODES episodes).
+- *Automatic reset inside the vector environment.* With gymnasium 1.4 the step after a terminal step returns the first observation of the next game, ignores the action and gives reward 0. That step must not be recorded as a transition and the difference frame must restart from an all-zero previous frame; the `FrameTracker` class handles it, a unit test exercises the sequence (terminal step, reset step, first real step), and the training loop asserts after every episode that its own episode reward and length equal the ones reported by gymnasium's `RecordEpisodeStatistics` wrapper (no mismatch occurred in about 22,516 episodes).
 - *First frame of a game.* There is no previous frame, so the input is the first frame itself; this is the only input that shows the static paddles, and a test checks it.
 - *In-place preprocessing.* The assignment's `preprocess()` edits its input in place; applied to the shared observation buffer of the vector environment it would corrupt later observations, so the function first copies the crop. A test checks that the frame is unchanged after preprocessing.
 - *Two of six actions.* Only indices 0 and 1 of the policy exist, mapped to environment actions 2 (RIGHT, measured to move the paddle up) and 3 (LEFT, down). Pong serves automatically, so FIRE is not needed; the action counter at the end of each run confirms that no other action was sent, and every recorded game reached 21 points for one side.
 - *Sticky actions.* `Pong-v5` repeats the previous action with probability 0.25 regardless of the agent's choice. The recorded action is the one the agent sampled, which is the correct quantity for the policy gradient; the repetition is part of the environment's transition noise and makes the game stochastic even for a fixed seed.
 - *Sparse rewards and long episodes.* Rewards are $\pm 1$ at the 21 to 41 points of a game and 0 elsewhere; a game lasts from about 800 steps (losing 21-0 quickly) to several thousand steps once rallies get longer. $G_t$ is computed over the whole episode as required, but with $\gamma = 0.99$ a point's reward is discounted by 0.37 after 100 steps, so each return is dominated by the next point (validation P4 shows the sawtooth). Inputs are stored as int8 and the update works in chunks, so a batch of 10 long games fits in memory.
 - *In-flight trajectories at update time.* With four parallel games, up to three games are unfinished when the batch of 10 completes; they continue under the updated policy and are used with log-probabilities recomputed at their own update, so the gradient is always taken at the current parameters and the data is at most one update old.
-- *Frame limit.* The environment also truncates a game after 108,000 frames (27,000 steps); this never happened (the longest recorded game had N_PONG_MAXLEN steps) and would be treated like a terminal step.
+- *Frame limit.* The environment also truncates a game after 108,000 frames (27,000 steps); this never happened (the longest recorded game had 8,563 steps) and would be treated like a terminal step.
 
 ## Tests that validate correctness (Part 1)
 
@@ -217,7 +231,17 @@ PONG_PART1_PLACEHOLDER
 
 **Pong-v5.**
 
-PONG_TESTS_PLACEHOLDER
+1. **Preprocessing (P1, Figure FIG(fig_val_pong_preprocess)).** A mid-rally frame keeps 34 of the 6400 pixels (two paddles and the ball), all values are 0 or 1, and the difference frame has 16 nonzero entries: the moving objects only. The unit tests check the shape, the binary values and that the input frame is left unchanged.
+2. **Action semantics (P2).** Holding action 2 (RIGHT) for 15 steps moves the agent's paddle from row 34.5 to row 1.0 of the 80 x 80 image; holding action 3 (LEFT) moves it from 34.5 to 78.5. Row 0 is the top, so RIGHT is up and LEFT is down; the behaviour probe below relies on this.
+3. **Random policy and game structure (P3).** 20 games with uniformly random RIGHT/LEFT score -20.10 on average (standard deviation 0.77, best -19, mean length 1105 steps). Every game ended when one side reached 21 points, the last reward was nonzero and all rewards were in $\{-1, 0, 1\}$; the same structural assertions run on every game inside the training loop, and the loop also asserts that its own episode reward and length equal gymnasium's `RecordEpisodeStatistics` values. These assertions held for all 22,516 training games of the local runs. The action counters at the end of the runs show only actions 2 and 3 (for the main no-baseline run RIGHT 404,648 times and LEFT 440,448 times).
+4. **Discounted return along a game (P4, Figure FIG(fig_val_pong_returns)).** Over a 5,857-step game of the trained policy $G_t$ ranges in [-1.95, 1.55]; at the first lost point $G_t$ = -0.299 and ten steps earlier -0.271, a ratio of 0.904 against $0.99^{10} = 0.904$ expected when no other point is near. The sawtooth shape shows that each return is dominated by the next point even though it is computed over the whole game.
+5. **Behaviour probe (P5).** On frames where both the ball and the agent's paddle are visible, the trained policy chooses "up" with probability 0.519 when the ball is above the paddle and 0.296 when it is below (difference +0.223, 12,014 and 4,143 frames); the untrained network gives 0.482 and 0.482. The agent moves the paddle toward the ball, which is the behaviour the score requires and which the pixels alone do not reveal.
+6. **First steps of a game (P7).** The first input of a game holds the full first frame (18 nonzero pixels, both paddles) and later inputs only the moving pixels (3 to 20 nonzero entries); the table in `results/pong/validation/validation.md` lists the first 10 inputs, action probabilities and actions.
+7. **Longest game and truncation.** The longest recorded game had 8,563 steps, far below the 27,000-step frame limit, so no game was truncated.
+
+![Test P1: raw frame, preprocessed 80 x 80 frame, and the difference frame fed to the network.](../results/pong/validation/fig_val_pong_preprocess.png){ width=90% }
+
+![Test P4: discounted return along one trained-policy game, with the won and lost points marked.](../results/pong/validation/fig_val_pong_returns.png){ width=80% }
 
 ## With three more months (Part 1)
 
@@ -269,7 +293,27 @@ The constant baseline with learning rate 0.003 solves the task in all five seeds
 
 ## Pong-v5 with a baseline
 
-PG2_PONG_PLACEHOLDER
+**Main local run (value baseline).** With the same learning rate and batch size the value-baseline run trained for 5.30 hours, 8,005 games and 36.0 million steps; its moving average reached a best of 9.8 and ended at 9.6 (Figure FIG(value_lr1e-3_training)). The 500-game roll-out scores 9.57 on average with standard deviation 3.97 (minimum -4, maximum 19; Figure FIG(value_lr1e-3_hist_sampled)); with greedy actions 10.18 and 3.63. Figure FIG(compare_env_steps) compares the two local runs on the same number of environment steps and Figure FIG(compare_wall_time) on wall-clock time: the no-baseline run first reaches a moving average of 0 after 11.6 million steps (4,996 games) and the value-baseline run after 12.9 million steps (3,565 games); for a moving average of +5 the numbers are 15.0 million steps (5,824 games) against 18.3 million steps (4,516 games). Counted in games the baseline run is ahead, counted in environment steps the two are close, because the baseline run's rallies get longer sooner and each of its games costs more steps. Both runs are single seeds, so the five-seed cluster comparison below is the one to read for the size of the effect.
+
+![Part 2, Pong-v5, value baseline, lr 1e-3 (local run): episode reward and its 100-episode moving average.](../results/pong/figures/value_lr1e-3_training.png){ width=80% }
+
+![Part 2, Pong-v5, value baseline (local run): 500 roll-out games of the final policy with sampled actions.](../results/pong/figures/value_lr1e-3_hist_sampled.png){ width=62% }
+
+![Pong-v5: moving-average reward of the two local runs against environment steps.](../results/pong/figures/compare_env_steps.png){ width=78% }
+
+![Pong-v5: moving-average reward of the two local runs against training wall-clock time.](../results/pong/figures/compare_wall_time.png){ width=78% }
+
+**Five seeds per variant on the cluster.** Figure FIG(compare_seed_groups) and the table give the cluster results after 4.0 hours of training per run.
+
+| variant (5 seeds each) | games per seed | final MA100 per seed | final MA100 mean (std over seeds) | roll-out mean per seed (500 games, sampled actions) | roll-out mean over seeds |
+|---|---|---|---|---|---|
+| no baseline | 7,196 to 8,544 | 10.9, -2.6, 8.0, -1.4, -3.9 | 2.2 (6.1) | 11.2, -2.7, 8.4, -1.2, -2.9 | 2.6 |
+| constant baseline | 5,444 to 6,915 | 10.1, -1.2, -1.4, 12.8, 3.8 | 4.8 (5.8) | 9.9, -0.8, -0.3, 12.9, 3.7 | 5.1 |
+| value baseline | 4,443 to 5,782 | 2.5, 11.6, -0.1, 1.2, 12.3 | 5.5 (5.3) | 1.8, 11.6, 0.6, 1.1, 12.8 | 5.6 |
+
+All three variants learn with identical hyperparameters and no seed collapsed (final policy entropies 0.11 to 0.20 nats). A moving average of $-10$ is reached after a median of 3,491 games without a baseline, 1,730 with the constant baseline and 1,687 with the value baseline; a moving average of 0 is reached by 2, 4 and 5 of the 5 seeds (median 3,861, 3,335 and 3,329 games among those that reach it). The baseline runs need fewer games to reach each level, while the number of games played in 4 hours is smaller for them because their rallies get longer sooner. The spread between seeds (standard deviations of the final moving average 6.1, 5.8 and 5.3) is of the same size as the difference between variants, which is why one seed per variant, as on the laptop, is not enough to rank them.
+
+![Pong-v5, cluster: mean and standard deviation over 5 seeds of the 100-episode moving-average reward for no baseline, the constant baseline and the learned value baseline.](../results/pong/figures/compare_seed_groups.png){ width=82% }
 
 ## Edge cases (Part 2)
 
@@ -292,7 +336,14 @@ PG2_PONG_PLACEHOLDER
 
 **Pong-v5.**
 
-PONG_TESTS2_PLACEHOLDER
+1. **Spread of the advantage during training (Figure FIG(compare_advantage_std)).** Every update logs the standard deviation of $G_t$ and of the advantage over the batch. Without a baseline the two coincide by definition. With the value baseline the advantage spread is 0.69 times the spread of $G_t$ over the last 50 updates (average 0.38 against 0.55), so the value network explains most of the predictable part of the return; the remaining spread is the effect of the actions and of the sticky-action noise, which no state-dependent baseline can remove.
+2. **Variance of the gradient estimate (P6).** For 12 games of the Part 2 policy (mean score 9.3) the trace of the per-game gradient covariance is 0.000811 with no baseline, 0.000768 with the constant baseline (1.1x smaller) and 0.0003 with the learned value baseline (2.7x smaller); the cosines between the mean gradients and the no-baseline mean are 0.95 and 0.73, and the signal-to-noise ratio of the 12-game average gradient is 1.12, 1.21 and 1.27.
+3. **Policy entropy (Figure FIG(compare_entropy)).** Both policies start at $\ln 2 = 0.693$ nats and become steadily more deterministic as they improve: the no-baseline run ends at 0.14 nats after 1150 updates and the value-baseline run at 0.11 nats after 800 updates. Neither reaches zero, unlike the CartPole runs at learning rate 0.01 and the Pong runs at learning rate 0.01, so the policies keep exploring and the 500-game roll-outs with sampled actions stay close to the greedy ones.
+4. **Outcome across seeds.** On the cluster 2 of 5 no-baseline seeds, 4 of 5 constant-baseline seeds and 5 of 5 value-baseline seeds reach a positive moving average within 4 hours, and the 500-game roll-outs average 2.6, 5.1 and 5.6 over seeds; the per-seed values are in the table of the Pong section.
+
+![Pong-v5: standard deviation over each batch of the return G_t and of the advantage actually used, for the two local runs.](../results/pong/figures/compare_advantage_std.png){ width=80% }
+
+![Pong-v5: mean policy entropy per update for the two local runs.](../results/pong/figures/compare_entropy.png){ width=78% }
 
 ## With three more months (Part 2)
 
